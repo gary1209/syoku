@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">
+          {{title}}
+            <a href="{% url 'storemenu:create' %}" class="btn btn-secondary">新增</a>
+      </div>
+      <div class="card-body">
+<table class="table" >
+    <thead >
+        <tr class="row">
+            <th class="col">美食圖片</th>
+            <th class="col">美食名稱</th>
+            <th class="col">美食類型</th>
+            <th class="col">美食熱量</th>
+            <th class="col">美食價錢</th>
+            <th class="col-4">美食介紹</th>
+            <th class="col-2">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for storemenu in storemenu %}
+        <tr class="row">
+            <td class="col"><img src="/media/{{storemenu.cimg}}" style="width: 100px; height: 100px;"></td>
+            <td class="col">{{storemenu.cname}}</td>
+
+            <td class="col">{{storemenu.ctype}}</td>
+            <td class="col">{{storemenu.ccal}}</td>
+            <td class="col">{{storemenu.cprice}}</td>
+            <td class="col-4">{{storemenu.cintroduction}}</td>
+            <td class="col-2">
+                <a href="{% url 'storemenu:update' storemenu.id %}" class="btn btn-secondary">編輯</a>
+                <a href="{% url 'storemenu:delete' storemenu.id %}" class="btn btn-danger">刪除</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock %}

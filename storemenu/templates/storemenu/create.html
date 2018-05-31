@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">{{title}}</div>
+      <div class="card-body">
+<!-- 如果檔案上傳需要多加上enctype="multipart/form-data" -->
+<form method="POST"   enctype="multipart/form-data">
+    {% csrf_token %}   
+    <div class="form-group row">
+        <label for="cname" class="col-sm-2 col-form-label">美食名稱</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="cname" id="cname" placeholder="美食名稱">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="cimg" class="col-sm-2 col-form-label">美食圖片</label>
+        <div class="col-sm-10">
+            <input type="file" class="form-control" name="cimg" id="cimg">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="ctype" class="col-sm-2 col-form-label">美食類型</label>
+        <div class="col-sm-10">
+            <select name='ctype' class="form-control" id="ctype">
+                <option value="0">請選擇</option>
+                <option value="西式料理">西式料理</option> 
+                <option value="日式料理">日式料理</option>
+                <option value="台式料理">台式料理</option>
+                <option value="韓式料理">韓式料理</option>
+                <option value="泰式料理">泰式料理</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <label for="ccal" class="col-sm-2 col-form-label">美食熱量</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="ccal" id="ccal" placeholder="熱量" step="0.1">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="cprice" class="col-sm-2 col-form-label">美食價錢</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="cprice" id="cprice" placeholder="價錢" step="0.1">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="cintroduction" class="col-sm-2 col-form-label">美食介紹</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" name="cintroduction" id="cintroduction" placeholder="美食介紹說明"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10 offset-md-2">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-bath" aria-hidden="true"></i> 新增美食</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+</div>  
+{% endblock %}
