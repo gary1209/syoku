@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="container">
+        <div class="card card-register mx-auto mt-5">
+          <div class="card-header">Register an Account</div>
+          <div class="card-body">
+       
+
+<a href="{% url 'member:create' %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> 會員新增</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>電子郵件</th>
+            <th>生日</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+   
+        <tr>
+            {% for member in members %}
+            <td>{{member.id}}</td>
+            <td>{{member.username}}</td>
+            <td>{{member.useremail}}</td>
+            <td>{{member.userbirth}}</td>
+           
+            <td>
+                <a href="{% url 'member:update' member.id %}" class="btn btn-info mr-2">修改</a>
+                <a href="{% url 'member:delete' member.id %}" class="btn btn-danger">刪除</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+{% endblock %}
