@@ -6,37 +6,24 @@
           {{title}}
             <a href="{% url 'storemenu:create' %}" class="btn btn-secondary">新增</a>
       </div>
+      <div class="row m-3" >
+      {% for storemenu in storemenu %}
+      <div class="col-6 col-md-3 mb-3" >
+      <div class="card " style="border: 3px solid black;">
+            <img class="card-img-top" src="/media/{{storemenu.cimg}}" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
+              <p class="card-text">{{storemenu.cintroduction}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">類型: {{storemenu.ctype}}</li>
+              <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
+              <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
+            </ul>
+        </div>
+          </div>   {% endfor %}
+        </div>
       <div class="card-body">
-<table class="table" >
-    <thead >
-        <tr class="row" style="text-align: center" >
-            <th class="col-3">美食圖片</th>
-            <th class="col">美食名稱</th>
-            <th class="col">美食類型</th>
-            <th class="col">美食熱量</th>
-            <th class="col">美食價錢</th>
-            <th class="col-4">美食介紹</th>
-
-        </tr>
-    </thead>
-    <tbody id="tobddy">
-        {% for storemenu in storemenu %}
-        <tr class="row">
-            <td class="col-3"><a href="#"><img id="imgall" src="/media/{{storemenu.cimg}}" data-toggle="modal" data-target="#exampleModal" style="width: 200px; height: 200px;"></a></td>
-            <td class="col">{{storemenu.cname}}</td>
-
-            <td class="col">{{storemenu.ctype}}</td>
-            <td class="col">{{storemenu.ccal}}</td>
-            <td class="col">{{storemenu.cprice}}</td>
-            <td class="col-4">{{storemenu.cintroduction}}</td>
-
-
-            </td>
-        </tr>
-
-        {% endfor %}
-    </tbody>
-</table>
 </div>
 </div>
 <div class="modal fade" id="exampleModal"  role="dialog"  aria-hidden="true">
