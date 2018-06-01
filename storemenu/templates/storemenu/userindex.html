@@ -3,34 +3,37 @@
 <div class="container" style="font-family: 'SimSun'">
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">
-          {{title}}
+        {{Company_email}}
+        {{title}}
             <a href="{% url 'storemenu:create' %}" class="btn btn-secondary">新增</a>
+            <a href="{% url 'storemenu:index' %}" class="btn btn-secondary">全部美食</a>
       </div>
       <div class="card-body">
 <table class="table" >
     <thead >
-        <tr class="row" style="text-align: center" >
-            <th class="col-3">美食圖片</th>
+        <tr class="row ">
+            <th class="col">美食圖片</th>
             <th class="col">美食名稱</th>
             <th class="col">美食類型</th>
             <th class="col">美食熱量</th>
             <th class="col">美食價錢</th>
             <th class="col-4">美食介紹</th>
-
+            <th class="col-2">操作</th>
         </tr>
     </thead>
     <tbody id="tobddy">
         {% for storemenu in storemenu %}
         <tr class="row">
-            <td class="col-3"><a href="#"><img id="imgall" src="/media/{{storemenu.cimg}}" data-toggle="modal" data-target="#exampleModal" style="width: 200px; height: 200px;"></a></td>
+            <td class="col"><a href="#"><img id="imgall" src="/media/{{storemenu.cimg}}" data-toggle="modal" data-target="#exampleModal" style="width: 100px; height: 100px;"></a></td>
             <td class="col">{{storemenu.cname}}</td>
 
             <td class="col">{{storemenu.ctype}}</td>
             <td class="col">{{storemenu.ccal}}</td>
             <td class="col">{{storemenu.cprice}}</td>
             <td class="col-4">{{storemenu.cintroduction}}</td>
-
-
+            <td class="col-2">
+                <a href="{% url 'storemenu:update' storemenu.id %}" class="btn btn-secondary">編輯</a>
+                <a href="{% url 'storemenu:delete' storemenu.id %}" class="btn btn-danger">刪除</a>
             </td>
         </tr>
 

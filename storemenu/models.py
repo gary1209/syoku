@@ -8,5 +8,6 @@ class Storemenu(models.Model):
     cprice = models.FloatField(null=False)
     cintroduction = models.CharField(max_length=500,null=False)
     cimg = models.CharField(max_length=100,null=False)
+    Company_email = models.CharField(max_length=100,null=False, )
     class Meta:
         db_table = "storemenu"
