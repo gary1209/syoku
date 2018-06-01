@@ -1,32 +1,36 @@
 {% load static %}
 <h1 class="site-heading text-center text-white d-none d-lg-block">
-  <span class="site-heading-upper text-primary mb-3">wE aRe ThE fOoD WeBsItE</span>
+  <span class="site-heading-upper text-primary mb-3">Syoku - wE aRe ThE fOoD WeBsItE</span>
   <span class="site-heading-lower">FoR YoU'rE SeRvIcE</span>
 </h1>
 <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
   <div class="container">
-    <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+    <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="">Syoku</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item active px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="#">Home
-            <span class="sr-only">(current)</span>
-          </a>
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'gary:index' %}">Home</a>
         </li>
         <li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="{% url 'member:login' %}">MeMbEr</a>
-        </li>
-        <li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="#">FoOd</a>
+          <a class="nav-link text-uppercase text-expanded" href="#">Recipe</a>
         </li>
         <li class="nav-item px-lg-4">
           <a class="nav-link text-uppercase text-expanded" href="#">Store</a>
-        </li><li class="nav-item px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="#">AnAlYsIs</a>
         </li>
+        <!-- <li class="nav-item px-lg-4">
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'member:login' %}">MeMbEr</a>
+        </li> -->
+        <div class="form-inline my-2 my-lg-0">
+            {% if request.COOKIES.name %}
+            <span>您好 {{request.COOKIES.name}} &nbsp;</span>
+            <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+            {% else %}
+            <a href="{% url 'gary:login' %}" class="btn btn-primary my-2 my-sm-0">登入</a>
+            {% endif %}
+        </div>
       </ul>
     </div>
   </div>
