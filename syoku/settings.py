@@ -134,4 +134,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+GOOGLE_RECAPTCHA_SECRET_KEY = "6LdtRlwUAAAAAFk6KFSMyZAIafw_cFZdzUQ-0cdJ"
