@@ -1,0 +1,46 @@
+ {% extends 'base.html' %} {% block content %} {% load static %}
+
+  <div class="card" style="margin :auto">
+    <div class="card-header" style="margin: auto;padding-top: 40px"><h2>DaTa/InFoMaTiOn FoR YoUr CoMpAnY</h2></div>
+    <hr style="border: solid 1px black">
+    <div class="card-body" style="margin: 0 auto">
+
+      <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CoMpAnY NaMe</th>
+                <th>Company-pwd</th>
+                <th>CoMpAnY email</th>
+                <th>company tele</th>
+                <th>Company address</th>
+                <th>company open time</th>
+                <th>company close time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company in companys%}
+            <tr>
+                <td>{{company.id}}</td>
+                <td>{{company.Company_name}}</td>
+                <td>{{company.Company_password}}</td>
+                <td>{{company.Company_email}}</td>
+                <td>{{company.Company_tele}}</td>
+                <td>{{company.Company_address}}</td>
+                <td>{{company.Company_open_time}}</td>
+                <td>{{company.Company_close_time}}</td>
+                <td>
+                    <a href="{% url 'jabor:update' company.id %}" class="btn btn-info mr-2">修改</a>
+                    <a href="{% url 'jabor:delete' company.id %}" class="btn btn-danger">刪除</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

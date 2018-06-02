@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div class="container">
+    <div class="card card-register mx-auto mt-5" style="margin :auto">
+        <div class="card-header" style="margin: auto;padding-top: 40px">
+            <h2>LoGin FoR YoUr CoMpAnY</h2>
+        </div>
+        <hr style="border: solid 1px black">
+        <div class="card-body" style="margin: 0 auto">
+
+            <form method="POST"  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-12" style="margin: auto">
+                        <label for="CoMpAnY EmAiL">EmAiL</label>
+                        <input type="email" class="form-control" name="Company_email" id="Company_email" placeholder="Enter email" style="border:solid 1px black">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12" style="margin: auto">
+                        <label for="CoMpAnY PaSsWoRd">PaSsWoRd</label>
+                        <input type="password" class="form-control " name="Company_password" id="Company_password" placeholder="Password" style="border:solid 1px black">
+                    </div>
+                </div>
+                <div class="form-check" style="text-align: center">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberme" value="yes">
+                    <label class="form-check-label" for="exampleCheck1"></label>ReMeMbEr Me
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary mt-2">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>登入</button>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
