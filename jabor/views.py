@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from .models import Company_data
+from member.models import Member
 import datetime
 
 
@@ -33,7 +34,7 @@ def update(request, id):
         Company_data.objects.filter(id=id).update(Company_name=Company_name, Company_email=Company_email, Company_photo=Company_photo, Company_tele=Company_tele,
                                                   Company_address=Company_address, Company_open_time=Company_open_time, Company_close_time=Company_close_time)
 
-        return redirect('/')
+        return redirect('/gary')
     return render(request, 'jabor/update.html', locals())
 
 
@@ -56,7 +57,7 @@ def register(request):
         Company_data.objects.create(Company_name=Company_name, Company_password=Company_password, Company_email=Company_email, Company_photo=Company_photo, Company_tele=Company_tele,
                                     Company_address=Company_address, Company_open_time=Company_open_time, Company_close_time=Company_close_time)
 
-        return redirect('/')
+        return redirect('/gary')
     return render(request, 'jabor/register.html', locals())
 
 
@@ -70,38 +71,42 @@ def delete(request, id):
 
 def login(request):
     companys_D = Company_data.objects.all()
-
+    # print(companys_D[0].id)
     if request.method == "POST":
+        if request.POST:
+            Company_email = request.POST["Company_email"]
+            Company_password = request.POST["Company_password"]
 
-        Company_email = request.POST["Company_email"]
-        Company_password = request.POST["Company_password"]
+            company_correct = Company_data.objects.filter(
+                Company_email=Company_email, Company_password=Company_password).values('Company_email')
+            # print(company_correct[0]['Company_email'])
+            if company_correct:
+                for companys in companys_D:
+                    if companys.Company_email == Company_email:
+                        response = HttpResponse("<script>alert('登入成功');</script>")
+                        a = 'http://localhost:8000/jabor/update/{}'.format(companys.id)
+                        return redirect(a)
 
-        company_correct = Company_data.objects.filter(
-            Company_email=Company_email, Company_password=Company_password).values('Company_email')
-        print(company_correct[0]['Company_email'])
-        if company_correct:
+                if 'rememberme' in request.POST:
+                    # print('123')
+                    expiredate = datetime.datetime.now()+datetime.timedelta(days=5)
 
-            response = HttpResponse(
-                "<script>alert('登入成功');location.href='/'</script>")
+                    response.set_cookie(
+                        "Company_email", company_correct[0]['Company_email'], expires=expiredate)
 
-            if 'rememberme' in request.POST:
-                print('123')
-                expiredate = datetime.datetime.now()+datetime.timedelta(days=5)
-
-                response.set_cookie(
-                    "Company_email", company_correct[0]['Company_email'], expires=expiredate)
-
+                else:
+                    # print('456')
+                    response.set_cookie(
+                        "Company_email", company_correct[0]['Company_email'])
             else:
-                print('456')
-                response.set_cookie(
-                    "Company_email", company_correct[0]['Company_email'])
+                # print("not found")
+                response = HttpResponse(
+                    "<script>alert('E-mail 或 密碼輸入錯誤 ');location.href='/jabor/login'</script>")
+            return response
         else:
-            # print("not found")
-            response = HttpResponse(
-                "<script>alert('E-mail 或 密碼輸入錯誤 ');location.href='/'</script>")
-        return response
-    return render(request, 'jabor/login.html', locals())
+            logins(request)
 
+    return render(request, 'jabor/login.html', locals())
 
 def logout(request):
 
