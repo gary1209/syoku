@@ -10,6 +10,7 @@ class Company_data(models.Model):
     Company_photo = models.CharField(max_length=80,null=False)
     Company_open_time = models.TimeField(max_length=20,null=False)
     Company_close_time = models.TimeField(max_length=20,null=False)
+
     
     class Meta:
         db_table = "Company_data"

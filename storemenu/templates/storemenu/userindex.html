@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="font-family: 'SimSun'">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">
+        {{Company_email}}
+        {{title}}
+            <a href="{% url 'storemenu:create' %}" class="btn btn-secondary">新增</a>
+            <a href="{% url 'storemenu:index' %}" class="btn btn-secondary">全部美食</a>
+      </div>
+      <div class="card-body">
+<table class="table" >
+    <thead >
+        <tr class="row ">
+            <th class="col">美食圖片</th>
+            <th class="col">美食名稱</th>
+            <th class="col">美食類型</th>
+            <th class="col">美食熱量</th>
+            <th class="col">美食價錢</th>
+            <th class="col-4">美食介紹</th>
+            <th class="col-2">操作</th>
+        </tr>
+    </thead>
+    <tbody id="tobddy">
+        {% for storemenu in storemenu %}
+        <tr class="row">
+            <td class="col"><a href="#"><img id="imgall" src="/media/{{storemenu.cimg}}" data-toggle="modal" data-target="#exampleModal" style="width: 100px; height: 100px;"></a></td>
+            <td class="col">{{storemenu.cname}}</td>
+
+            <td class="col">{{storemenu.ctype}}</td>
+            <td class="col">{{storemenu.ccal}}</td>
+            <td class="col">{{storemenu.cprice}}</td>
+            <td class="col-4">{{storemenu.cintroduction}}</td>
+            <td class="col-2">
+                <a href="{% url 'storemenu:update' storemenu.id %}" class="btn btn-secondary">編輯</a>
+                <a href="{% url 'storemenu:delete' storemenu.id %}" class="btn btn-danger">刪除</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+<div class="modal fade" id="exampleModal"  role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
+            <img sid="imgall" id = "imgalll"src="" style="width: 1000px;" >
+    </div>
+  </div>
+  <script>
+        $(document).ready(function () {
+            // $("#imgall").click(function () {
+            //     // alert('123')
+            //     img = $(this).attr('src')
+            //     alert (img)
+            //     // $("#imgalll").attr('src',img)
+            // });
+            $('#tobddy').on('click', '#imgall', function () {
+                img = $(this).attr('src')
+                // alert(img)
+                $("#imgalll").attr('src',img)
+
+            })
+        })
+</script>
+
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">已建食譜</div>
+            <div class="card-body">
+
+<a href="{% url 'recipe:create' %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> 新增食譜</a>
+
+<table class="table">
+        <thead>
+            <tr class="row">
+                <th class="col-2">圖片</th>
+                <th class="col-2">食譜名稱</th>
+                <th class="col-2">簡介</th>
+                <th class="col-2">葷素</th>
+                <th class="col-2">熱量</th>
+                <th class="col-2">管理</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recipe in recipes %}
+            <tr class="row">
+                <td class="col-2">
+                    <img src="/media/{{recipe.reccover}}" class="img-thumbnail" style="width:150px">
+                
+                </td> 
+                <td class="col-2">{{recipe.recname}}</td>
+                <td class="col-2">{{recipe.recdesc}}</td>
+                <td class="col-2">{{recipe.recvegan}}</td>
+                <td class="col-2">{{recipe.reccal}}</td>
+                <td class="col-2">
+                        <a href="{% url 'recipe:update' recipe.recid %}" class="btn btn-info mr-2">修改</a>
+                        <a href="{% url 'recipe:delete' recipe.recid %}" class="btn btn-danger">刪除</a></td>
+                </tr>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'recipe:index' %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i>返回食譜</a>
+</div>
+</div>
+</div>
+</div>
+    {% endblock %}
