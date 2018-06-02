@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header"></div>
+        <div class="card-body">
+        
+        <a href="{% url 'recipe:userrecipe' %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i>我的食譜</a>
+        <table class="table">
+            <thead>
+                <tr class="row">
+                    <th class="col-2">圖片</th>
+                    <th class="col-2">食譜名稱</th>
+                    <th class="col-2">簡介</th>
+                    <th class="col-2">葷素</th>
+                    <th class="col-2">熱量</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr class="row">
+                    <td class="col-2">
+                        <a href="{% url 'recipe:showrecipe' recipe.recid %}">
+                            <img src="/media/{{recipe.reccover}}" class="img-thumbnail" style="width:150px"></a>
+                    </td> 
+                    <td class="col-2">{{recipe.recname}}</td>
+                    <td class="col-2">{{recipe.recdesc}}</td>
+                    <td class="col-2">{{recipe.recvegan}}</td>
+                    <td class="col-2">{{recipe.reccal}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
