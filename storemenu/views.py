@@ -32,7 +32,7 @@ def create(request):
         title = "菜單新增" 
         return render(request,'storemenu/create.html',locals())
     else:
-        return HttpResponse ("<script>alert('請先登入');location.href='/member/login'</script>") 
+        return HttpResponse ("<script>alert('請先登入');location.href='/jabo/login'</script>") 
 
 
 def update(request,id):
@@ -73,7 +73,7 @@ def update(request,id):
         # print(storemenu[0])
         return render(request,'storemenu/update.html',locals())
     else:
-        return HttpResponse ("<script>alert('請先登入');location.href='/member/login'</script>") 
+        return HttpResponse ("<script>alert('請先登入');location.href='/jabo/login'</script>") 
 def delete(request,id):
     if 'Company_email' in request.COOKIES:
         Company_email =request.COOKIES['Company_email']
@@ -81,7 +81,7 @@ def delete(request,id):
         storemenu.delete()
         return redirect('/storemenu/userindex')
     else:
-        return HttpResponse ("<script>alert('請先登入');location.href='/member/login'</script>") 
+        return HttpResponse ("<script>alert('請先登入');location.href='/jabo/login'</script>") 
 
 def userindex(request):
         # 如果cookie裡面沒有name的存在 就會跳回登入頁面  
@@ -93,7 +93,7 @@ def userindex(request):
         # userall = Member.objects.all()
         return render(request,'storemenu/userindex.html',locals())
     else:
-        return HttpResponse ("<script>alert('請先登入');location.href='/member/login'</script>") 
+        return HttpResponse ("<script>alert('請先登入');location.href='/jabo/login'</script>") 
         # return redirect("/member/login")name
 
 

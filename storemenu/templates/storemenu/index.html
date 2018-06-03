@@ -6,11 +6,11 @@
           {{title}}
             <a href="{% url 'storemenu:create' %}" class="btn btn-secondary">新增</a>
       </div>
-      <div class="row m-3" >
+      <div class="row m-3" id="tooo" >
       {% for storemenu in storemenu %}
       <div class="col-6 col-md-3 mb-3" >
       <div class="card " style="border: 3px solid black;">
-            <img class="card-img-top" src="/media/{{storemenu.cimg}}" alt="Card image cap">
+            <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
             <div class="card-body">
               <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
               <p class="card-text">{{storemenu.cintroduction}}</p>
@@ -25,21 +25,16 @@
         </div>
       <div class="card-body">
 </div>
-</div>
 <div class="modal fade" id="exampleModal"  role="dialog"  aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
-            <img sid="imgall" id = "imgalll"src="" style="width: 1000px;" >
-    </div>
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
+          <img sid="imgall" id = "imgalll" src="" style="width: 1000px;" >
   </div>
+</div>
+</div>
+
   <script>
-        $(document).ready(function () {
-            // $("#imgall").click(function () {
-            //     // alert('123')
-            //     img = $(this).attr('src')
-            //     alert (img)
-            //     // $("#imgalll").attr('src',img)
-            // });
-            $('#tobddy').on('click', '#imgall', function () {
+        $(document).ready(function () {        
+            $('#tooo').on('click', '#imgall', function () {
                 img = $(this).attr('src')
                 // alert(img)
                 $("#imgalll").attr('src',img)
