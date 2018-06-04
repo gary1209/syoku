@@ -2,87 +2,81 @@
 {% block content %} 
 <!-- {% load static %} -->
 <div class="container">
-    <div class="card card-register mx-auto mt-5">
-        
+    <div class="card">
         <div class="card-body">
-        <form method="POST" enctype="multipart/form-data" action="{% url 'recipe:update' recipe.recid %}" name="reciptform" id="reciptform">
-
-        {% csrf_token %}   
-
-            <div class="float-left" id="namepic">
-               
-                <div class="form-group row ">
-                    <h2 class="col-sm-2.5 col-form-label ">{{recipe.recname}}</h2>
-                   
-                </div>
-
-                <div class="form-group row " >
-                    <div class="col-sm-10">
-                        <label for="recCover" class="col-sm-10 col-form-label">
-                            
-                            <img src="/media/{{recipe.reccover}}"  class="form-control" name="imgrecipcover" id="imgrecipename" placeholder="Recipt Name" style="width:150px">
+        <!-- <form method="POST" enctype="multipart/form-data" action="{% url 'recipe:update' recipe.recid %}" name="reciptform" id="reciptform"> -->
+        <!-- {% csrf_token %}    -->
+        <div class" row ">
+            <div class=" col-sm-4 " id="namepic">
+                <!-- <div class="form-group row "> -->
+                <h3 >{{recipe.recname}}</h3>
+                <!-- </div> -->
+                <!-- <div class="form-group row " > -->
+                    <div>
+                        <label for="recCover" >
+                            <img src="/media/{{recipe.reccover}}"  class="form-control" name="imgrecipcover" id="imgrecipename" placeholder="Recipt Name" style="width:100px">
                         </label>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
 
-            <div class"float-right">
-
-                <div class="form-group row ">
-                    <label for="recDesc" class="col-sm-3 col-form-label">簡介：</label>
+            <div class"col-sm-8 ">
+                <div class=" row ">
+                    <label for="recDesc" class="col-sm-3 " >簡介：</label>
                     <div class="col-sm-9">
-                        <span class="form-control"  name="recDesc" id="recDesc" >{{recipe.recdesc}}</span>
+                        <p class="form-control"  name="recDesc" id="recDesc" >{{recipe.recdesc}}</p>
                     </div>
                 </div>
 
-                <div class="form-group row ">
-                    <label for="recTime" class="col-sm-4 col-form-label ">料理時間(分鐘)：</label>
-                    <div class="col-sm-4">
-                        <span class="col-sm-8">{{recipe.rectime}}分鐘</span>
-                        
-                    </div>
+                <div class="row ">
+                    <label for="recTime" class="col-sm-4 ">料理時間(分鐘)：</label>
+                    <!-- <div class="col-sm-4"> -->
+                        <span class="col-sm-8  form-inline">{{recipe.rectime}}分鐘</span>  
+                    <!-- </div> -->
                 </div>
 
-                <div class="form-group row ">
+                <div class="row ">
                     <label for="recPortion" class="col-sm-4 col-form-label ">份量(人份)：</label>
-                    <div class="col-sm-4">
-                        <span class="col-sm-8" >{{recipe.recportion}}人</span>
-                       
-                    </div>
+                    <!-- <div class="col-sm-4"> -->
+                        <span class="col-sm-8 form-inline" >{{recipe.recportion}}人</span>
+                    <!-- </div> -->
                 </div>
             
-                <div class="form-group row ">
-                    <label for="recCal" class="col-sm-3 col-form-label ">熱量(卡路里)：</label>
-                    
-                    <span class="col-sm-8">{{recipe.recportion}}大卡</span>
-                    
+                <div class=" row ">
+                    <label for="recCal" class="col-sm-4 col-form-label ">熱量(卡路里)：</label>            
+                    <span class="col-sm-8 form-inline">{{recipe.recportion}}大卡</span>
                 </div>
-
-                <div class="form-group row form-inline ingredient clearfix">
-                    <label for="recVegan" class="col-sm-3 col-form-label ">葷素：</label>
-                    <span class="col-sm-8">{{recipe.recvegan}}</span>
-                    
+<!-- ingredient clearfix -->
+                <div class=" row "> 
+                    <label for="recVegan" class="col-sm-4 col-form-label ">葷素：</label>
+                    <span class="col-sm-8 form-inline">{{recipe.recvegan}}</span>
                 </div>
             </div>
+        </div>
 
-            <div class="float-none form-group row">
-                <div id="foodlist" class="form-inline ingredient clearfix " >
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">食材</h3>
+                </div>
+                
+                <div id="foodlist" class=" panel-body form-inline row  " >
                     {% for fod in fodlist %}
-                    <div class="form-inline ingredient clearfix col-sm-12" name="foodbar">
-                            <span class="form-control ingredient-name required maxlen col-sm-5" name="food">{{fod.name}}    {{fod.qty}}</span>
-                            
-                       
+                    <div class="col-sm-6  form-control" name="foodbar" >
+                        <span class=" col-sm-4 float-left " name="food">{{fod.name}}  </span>
+                        <span class="col-sm-2 float- right " name="qty"> {{fod.qty}} </span>
                     </div>   
                     {% endfor %}
                 </div>    
             
             </div>
-    
-            <div >
-                <div id="cookstep" class="form-inline ingredient clearfix " >
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">步驟</h3>
+                </div>
+            <div class="panel-body">
+                <div id="cookstep" class="form-inline "  >
                     {% for stp in stplist %}
-                    <div class="form-inline ingredient clearfix" name="stepbar">
-                        <p class="form-control" name="step" id="step" placeholder="請輸入步驟">{{stp}}</p>
+                    <div class="form-inline  form-control " name="stepbar">{{stp}}
                         
                     </div>
                     {% endfor %}
@@ -92,9 +86,6 @@
 
             <input type="hidden" id="recFood" name='recFood'>
             <input type="hidden" id="recStep" name='recStep'>
-            <div class="form-group row">
-                
-            </div>
         
         </form>
         </div>
@@ -104,48 +95,48 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
       $(document).ready(function() {
-        $('#stepAdd').click(function() {
-            $('#cookstep').append( ' <div class="form-inline ingredient clearfix" name="stepbar">                <textarea class="form-control" name="step" id="step" placeholder="請輸入步驟"></textarea>                <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>        </div>'
-             )
-        })
+        // $('#stepAdd').click(function() {
+        //     $('#cookstep').append( ' <div class="form-inline ingredient clearfix" name="stepbar">                <textarea class="form-control" name="step" id="step" placeholder="請輸入步驟"></textarea>                <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>        </div>'
+        //      )
+        // })
 
-        $('#cookstep').on('click','#stepDel',function(){
-								 $(this).parent("div").remove();
-							})
+        // $('#cookstep').on('click','#stepDel',function(){
+		// 						 $(this).parent("div").remove();
+		// 					})
 
-        $('#foodAdd').click(function() {
-            $('#foodlist').append( '<div class="form-inline ingredient clearfix" name="foodbar">            <input type="text" class="form-control ingredient-name required maxlen col-sm-5" placeholder="食材" name="food"  required>            <input type="text" class="form-control ingredient-name required maxlen col-sm-3" placeholder="份量" name="fQty"  required>            <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>        </div>'
-             )
-        })
+        // $('#foodAdd').click(function() {
+        //     $('#foodlist').append( '<div class="form-inline ingredient clearfix" name="foodbar">            <input type="text" class="form-control ingredient-name required maxlen col-sm-5" placeholder="食材" name="food"  required>            <input type="text" class="form-control ingredient-name required maxlen col-sm-3" placeholder="份量" name="fQty"  required>            <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>        </div>'
+        //      )
+        // })
 
-        $('#foodlist').on('click','#foodDel',function(){
-								 $(this).parent("div").remove();
-							})
+        // $('#foodlist').on('click','#foodDel',function(){
+		// 						 $(this).parent("div").remove();
+		// 					})
 
-        $('#sbmBtn').click(function(){  
+    //     $('#sbmBtn').click(function(){  
         
-        fodlist = []
-        $('div[name="foodbar"]').each(function(index){
-            fod = {}
-            fod.name = $(this).children('input[name="food"]').val()
-            fod.qty = $(this).children('input[name="fQty"]').val()
-            fodlist.push(fod)
-        });
+    //     fodlist = []
+    //     $('div[name="foodbar"]').each(function(index){
+    //         fod = {}
+    //         fod.name = $(this).children('input[name="food"]').val()
+    //         fod.qty = $(this).children('input[name="fQty"]').val()
+    //         fodlist.push(fod)
+    //     });
         
-        recFood = JSON.stringify(fodlist)
-        $('#recFood').val(recFood)
+    //     recFood = JSON.stringify(fodlist)
+    //     $('#recFood').val(recFood)
 
-        stplist = []
-        $('div[name="stepbar"]').each(function(index){    
-            stp = $(this).children('textarea[name="step"]').val()    
-            stplist.push(stp)
-        });
+    //     stplist = []
+    //     $('div[name="stepbar"]').each(function(index){    
+    //         stp = $(this).children('textarea[name="step"]').val()    
+    //         stplist.push(stp)
+    //     });
         
-        recStep= JSON.stringify(stplist)
-        $('#recStep').val(recStep)
-        $('#reciptform').submit()
+    //     recStep= JSON.stringify(stplist)
+    //     $('#recStep').val(recStep)
+    //     $('#reciptform').submit()
           
-      })                             
+    //   })                             
     })
     </script>
     {% endblock %}
