@@ -32,7 +32,7 @@ def create(request):
         # 會員資料寫進資料庫
         Member.objects.create(username=username,password=password,userphone=userphone,useremail=useremail,userbirth=userbirth,useraddress=useraddress,usergender=usergender)
         
-        return redirect('/member/home')
+        return redirect('/memeber/login')
 
     # title = "會員新增" 
     return render(request,'member/create.html',locals())
@@ -76,7 +76,7 @@ def login(request):
         member = Member.objects.filter(useremail=email,password=pwd).values('username','useremail')
         if member:
             # print(member[0])
-            response = HttpResponse("<script>alert('登入成功');location.href='/member/home' </script>")
+            response = HttpResponse("<script>alert('登入成功');location.href='/' </script>")
             response.set_cookie("uid",member[0]['useremail'])
                 
             # if 'rememberme'in request.POST:
@@ -95,7 +95,7 @@ def login(request):
 
 def logout(request):
     response = HttpResponse("<script>alert('登出成功');location.href='/member/login'</script>")
-    response.delete_cookie('name')
+    response.delete_cookie('uid')
     return response
 
 

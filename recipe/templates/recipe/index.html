@@ -8,7 +8,7 @@
         <a href="{% url 'recipe:userrecipe' %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i>我的食譜</a>
         <div class="row m-3">
         {% for recipe in recipes %}
-        <div class="col-6 col-md-3 md-3">
+        <div class="col-6 col-md-3 md-3 mb-3">
             <div class="card" style="border: 3px solid black;">
                 <a href="{% url 'recipe:showrecipe' recipe.recid %}">
                     <img class="card-img-top"src="/media/{{recipe.reccover}}" class="img-thumbnail" style="width:900"></a>

@@ -27,13 +27,13 @@
           <a class="nav-link text-uppercase text-expanded" href="{% url 'member:login' %}">MeMbEr</a>
         </li> -->
         <div class="form-inline my-2 my-lg-0">
-            {% if request.COOKIES.name %}
-            <span>您好 {{request.COOKIES.name}} &nbsp;</span>
+            {% if request.COOKIES.uid %}
+            <!-- <span>您好 {{request.COOKIES.uid}} &nbsp;</span> -->
             <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
             {% else %}
 
 
-            <a href="{% url 'gary:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
+            <a href="{% url 'member:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
             {% endif %}
             &nbsp;&nbsp;&nbsp;
             {% if request.COOKIES.Company_email %}

@@ -180,13 +180,12 @@
     }
 
     function sb(){
-        
-        if(recName !=null && coverflag ==true && recDesc !=null && recCal !=null &&  recFood !=null && recStep !=null){
+      
+        if($('#recName').val() !=null && coverflag ==true && $('#recDesc').val() !=null && $('#recCal').val() !=null &&  $('#recFood').val() !=null && $('#recStep').val() !=null){
            $('#reciptform').submit()
         }
         else{
             alert("資料輸入不完全")
-            
         }
     }
     
