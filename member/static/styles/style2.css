@@ -84,7 +84,7 @@
 .login a {
   font-size: 0.8em;
   /* color: #2196F3; */
-  color: orange;
+  color:orange;
   text-decoration: none;
 }
 .login .title {
@@ -99,12 +99,7 @@
   width: 100%;
   height: 100%;
   padding: 10px 10px;
-<<<<<<< HEAD
-  background: red;
-=======
   background: orange;
-  /* background: #2196F3; */
->>>>>>> 91786bfca0056ed5635abfc76fcc465521ded014
   color: #fff;
   display: block;
   border: none;
