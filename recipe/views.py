@@ -15,8 +15,8 @@ def index(request):
 
 def userrecipe(request):
     
-    if 'user' in request.COOKIES:
-        user = request.COOKIES['user']
+    if 'uid' in request.COOKIES:
+        user = request.COOKIES['uid']
         recipes=Recipe.objects.filter(userid=user)
     else:
         return redirect('/member/login') 
@@ -74,22 +74,26 @@ def showrecipe(request,id):
 
 def create(request):
 
-    if 'user' in request.COOKIES:
-        user = request.COOKIES['user']
+    if 'uid' in request.COOKIES:
+        user = request.COOKIES['uid']
     
         cooktimelist = [10,20,30,45,60,90]
         portionlist = [1,2,3,4,5,6,7,8,9,10]
-        if request.method == 'POST'and request.FILES["recCover"]:
         
-            
+        if request.method == 'POST':
+        
             userId = user
             recName = request.POST["recName"]
 
-            myfile = request.FILES['recCover']        
-            fs = FileSystemStorage()
-            recCoverName="rec"+userId+"_"+recName+".jpg"
-            fs.save(recCoverName,myfile)
-            # reccoverimg=recCoverName
+            try:
+                myfile = request.FILES['recCover']
+            except:
+                pass
+            else:
+                fs = FileSystemStorage()
+                recCoverName="rec"+userId+"_"+recName+".jpg"
+                fs.save(recCoverName,myfile)
+                # reccoverimg=recCoverName
             
             recDesc = request.POST["recDesc"]
             recTime = request.POST["recTime"]
@@ -99,8 +103,13 @@ def create(request):
             recFood = request.POST["recFood"]
             recStep = request.POST["recStep"]
             
-            Recipe.objects.create(userid=userId,recname=recName,reccover=recCoverName,recdesc=recDesc,rectime=recTime,recportion=recPortion,reccal=recCal,recvegan=recVegan,recfood=recFood,recstep=recStep)
-            return redirect('/recipe/userrecipe')
+            try:
+                Recipe.objects.create(userid=userId,recname=recName,reccover=recCoverName,recdesc=recDesc,rectime=recTime,recportion=recPortion,reccal=recCal,recvegan=recVegan,recfood=recFood,recstep=recStep)
+            except:
+                response = HttpResponse("<script>alert('資料不完全');location.href='/recipe/create'</script>")
+                return response
+            else:
+                return redirect('/recipe/userrecipe')
         
         return render(request,'recipe/create.html',locals())
     
@@ -109,9 +118,9 @@ def create(request):
 
 def update(request,id):
 
-    if 'user' in request.COOKIES:
-        print("123")
-        user = request.COOKIES['user']
+    if 'uid' in request.COOKIES:
+        
+        user = request.COOKIES['uid']
         # recipes=Recipe.objects.filter(userid=user)
         
         cooktimelist = [10,20,30,45,60,90]
@@ -169,8 +178,8 @@ def update(request,id):
 
 def delete(request,id):
 
-    if 'user' in request.COOKIES:
-        user = request.COOKIES['user']
+    if 'uid' in request.COOKIES:
+        user = request.COOKIES['uid']
         recipes=Recipe.objects.filter(userid=user)
 
         recipe=Recipe.objects.get(recid=int(id))
