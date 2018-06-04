@@ -3,7 +3,6 @@
 
 {% csrf_token %}
 
-
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -11,51 +10,36 @@
 
 {% load static %}
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 <link rel='stylesheet' href="{% static 'styles/style.css' %}">
-
 
 
 <div class="wrapper ">
   <form class="login" method="POST"> 
       {% csrf_token %}
-    <p class="title">Log in</p>
-    <input type="email" placeholder="Enter email" autofocus class="form-control" id="useremail" name="useremail"  />
+    <p class="title" style="text-align: center">Log in</p>
+    <input type="email" placeholder="Enter email" class="form-control" id="useremail" name="useremail"/>
     <i class="fa fa-user"></i>
     
-
     <input type="password" placeholder="Password" class="form-control" name="userpassword" id="userpassword" placeholder="Password" />
-    
     <i class="fa fa-key"></i>
+
+<!--  
+    <div class="g-recaptcha" data-sitekey="6Ld7RlwUAAAAANaLYrmbDCh1BxPHFb1hctkY81dE"></div>
+ -->
+
+ 
     <a target="blank" href="{% url 'member:create' %}">非會員註冊去</a>
 
-
-    <button type="submit" class="btn btn-primary mt-2">
-      <i class="fa fa-sign-in" aria-hidden="true"></i>Log in</button>
+    <button type="submit" class="btn btn-primary mt-2">Log in</button>
 
     </button>
   </form>
   <footer></footer>
   </p>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
