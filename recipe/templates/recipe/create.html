@@ -6,13 +6,12 @@
         <div class="card-header">新增食譜</div>
         <div class="card-body">
         <form method="POST" enctype="multipart/form-data" action="{% url 'recipe:create'%}" name="reciptform" id="reciptform">
-
+ 
         {% csrf_token %}   
-
-            <div class="float-left" id="namepic">
-                <!-- <input type="text" class="form-control" name="userId" id="userId" placeholder="userId">                -->
+        <div class="form-group row">
+            <div class="float-left col-sm-5" id="namepic">
                 <div class="form-group row ">
-                    <label for="recName" class="col-sm-2.5 col-form-label ">食譜名稱：</label>
+                    <label for="recName" class="col-sm-2.5 ml-1"  >食譜名稱：</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" name="recName" id="recName" required placeholder="請輸入食譜名稱">
                     </div>
@@ -20,25 +19,26 @@
 
                 <div class="form-group row " >
                     <div class="col-sm-10">
-                        <label for="recCover" class="col-sm-10 col-form-label">
-                            <input type = "file" name="recCover" required >
-                            <img src="/static/images/uppic.png"  class="form-control" name="imgrecipcover" id="imgrecipename" placeholder="Recipt Name">
-                        </label>
+                        <!-- <label for="recCover" class="col-sm-10 "> -->
+                            <img src="/static/images/uppic.png"  class="form-control" name="imgrecipcover" id="imgrecipename" placeholder="Recipt Name" style="width:250px">
+                            <input type = "file" name="recCover" onchange="openFile(event)" required >
+                            
+                        <!-- </label> -->
                     </div>
                 </div>
             </div>
 
-            <div class"float-right">
+            <div class"float-right col-sm-7">
 
                 <div class="form-group row ">
-                    <label for="recDesc" class="col-sm-3 col-form-label">簡介：</label>
+                    <label for="recDesc" class="col-sm-3 ">簡介：</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" name="recDesc" id="recDesc" required placeholder="請輸入描述(最多200字)"></textarea>
+                        <textarea class="form-control " maxlength="200" rows="3" cols="50"   name="recDesc" id="recDesc" required placeholder="請輸入描述(最多200字)" style="resize: none"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group row ">
-                    <label for="recTime" class="col-sm-4 col-form-label ">料理時間(分鐘)：</label>
+                    <label for="recTime" class="col-sm-4  ">料理時間(分鐘)：</label>
                     <div class="col-sm-4">
                         <select class="select optional form-control" name="recTime" id="recTime">
                             <option value="0">請選擇</option>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="form-group row ">
-                    <label for="recPortion" class="col-sm-4 col-form-label ">份量(人份)：</label>
+                    <label for="recPortion" class="col-sm-4  ">份量(人份)：</label>
                     <div class="col-sm-4">
                         <select class="select optional form-control" name="recPortion" id="recPortion">
                             <option value>請選擇</option>                         
@@ -62,14 +62,14 @@
                 </div>
             
                 <div class="form-group row ">
-                    <label for="recCal" class="col-sm-3 col-form-label ">熱量(卡路里)：</label>
+                    <label for="recCal" class="col-sm-4  ">熱量(卡路里)：</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" name="recCal" id="recCal" required placeholder="請輸入熱量">
                     </div>
                 </div>
 
-                <div class="form-group row form-inline  ">
-                    <label for="recVegan" class="col-sm-3 col-form-label ">葷素：</label>
+                <div class="form-group row   ">
+                    <label for="recVegan" class="col-sm-3 ">葷素：</label>
                     <div class="col-sm-8">
                         <input  type="radio" name="recVegan" value="葷食" checked>葷食
                         <input  type="radio" name="recVegan" value="蛋奶素">蛋奶素
@@ -77,22 +77,30 @@
                     </div>
                 </div>
             </div>
-
-            <div class="float-none form-group row">
-                <div id="foodlist" class="form-inline   " >
+</div>
+        <div>
+        <h4 class="panel-title m-2">食材</h4>
+        </div>
+            <div class="form-group  row m-2">
+                    
+                <div id="foodlist" class=" form-inline  " >
                     <div class="form-inline  " name="foodbar">
-                        <input type="text" class="form-control  required maxlen col-sm-5" placeholder="食材" name="food"  required>
-                        <input type="text" class="form-control  required maxlen col-sm-3" placeholder="份量" name="fQty"  required>
+                        <input type="text" class="form-control  col-sm-5 m-1" placeholder="食材" name="food"  required>
+                        <input type="text" class="form-control  col-sm-3 m-1" placeholder="份量" name="fQty"  required>
                         <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>
                     </div>       
-                </div>    
-            <button type = "button" id="foodAdd" class="btn btn-outline btn-success">新增食材</button>
+                </div> 
+               
             </div>
-    
+      
+            <button type = "button" id="foodAdd" class="btn btn-outline btn-success m-2">新增食材</button>
+                
             <div >
-                <div id="cookstep" class="form-inline  clearfix " >
-                    <div class="form-inline  clearfix" name="stepbar">
-                        <textarea class="form-control" name="step" id="step" required placeholder="請輸入步驟"></textarea>
+                <h4 class="panel-title m-2">料理步驟</h4>
+                <div id="cookstep" class="form-inline " >
+                        
+                    <div class="form-inline m-1 " name="stepbar" >
+                        <textarea class="form-control" name="step" id="step" rows="3" cols="110" required placeholder="請輸入步驟" style="resize: none"></textarea>
                         <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>
                     </div>
                 </div>
@@ -101,10 +109,10 @@
 
             <input type="hidden" id="recFood" name='recFood'>
             <input type="hidden" id="recStep" name='recStep'>
-            <div class="form-group row">
-                <div class="col-sm-10 offset-md-2">
+            <div class=" row">
+                <div class="col-sm-10 offset-md-5">
                     <button id = "sbmBtn" type="button" class="btn btn-primary">
-                        <i class="fa fa-bath" aria-hidden="true"></i> 新增</button>
+                        <i class="fa fa-bath" aria-hidden="true" ></i> 新增</button>
                 </div>
             </div>
         </form>
@@ -116,7 +124,7 @@
     <script>
       $(document).ready(function() {
         $('#stepAdd').click(function() {
-            $('#cookstep').append( ' <div class="form-inline  " name="stepbar">                <textarea class="form-control" name="step" id="step" required placeholder="請輸入步驟"></textarea>                <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>        </div>'
+            $('#cookstep').append( ' <div class="form-inline m-1 " name="stepbar"> <textarea class="form-control" name="step" id="step" rows="3" cols="110" required placeholder="請輸入步驟" style="resize: none"></textarea>  <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>        </div>'
              )
         })
 
@@ -125,7 +133,7 @@
 							})
 
         $('#foodAdd').click(function() {
-            $('#foodlist').append( '<div class="form-inline  clearfix" name="foodbar">            <input type="text" class="form-control  required maxlen col-sm-5" placeholder="食材" name="food"  required>            <input type="text" class="form-control  required maxlen col-sm-3" placeholder="份量" name="fQty"  required>            <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>        </div>'
+            $('#foodlist').append( '<div class="form-inline  " name="foodbar">    <input type="text" class="form-control col-sm-5 m-1" placeholder="食材" name="food" required>   <input type="text" class="form-control  required  col-sm-3 m-1" placeholder="份量" name="fQty"  required>            <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>        </div>'
              )
         })
 
@@ -135,10 +143,10 @@
 
         $('#sbmBtn').click(function(){  
         
-        fodlist = []
-        $('div[name="foodbar"]').each(function(index){
-            fod = {}
-            fod.name = $(this).children('input[name="food"]').val()
+        fodlist = []//宣告陣列
+        $('div[name="foodbar"]').each(function(index){ //取出所有foodbar 
+            fod = {}//宣告物件
+            fod.name = $(this).children('input[name="food"]').val()//將名為food的input內值取出
             fod.qty = $(this).children('input[name="fQty"]').val()
             fodlist.push(fod)
         });
@@ -154,9 +162,32 @@
         
         recStep= JSON.stringify(stplist)
         $('#recStep').val(recStep)
-        $('#reciptform').submit()
+        sb()
+       
           
       })                             
     })
+
+    function openFile(event){
+        var input = event.target
+        var reader = new FileReader()
+        reader.readAsDataURL(input.files[0])
+        reader.onload = function(){
+            var dataURL = reader.result
+            $('#imgrecipename').attr('src', dataURL).show()
+        }
+    }
+
+    function sb(){
+        //  console.log(recName.val)
+        // if(recName !=null && recCover !=undefined && recDesc !=null && recCal !=null &&  recFood !=null && recStep !=null){
+           $('#reciptform').submit()
+        // }
+        // else{
+        //     alert("資料輸入不完全")
+            
+        // }
+    }
+    
     </script>
     {% endblock %}
