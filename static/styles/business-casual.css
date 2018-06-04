@@ -46,6 +46,10 @@ p {
   font-size: 5rem;
   font-weight: 100;
   line-height: 4rem;
+
+  
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: 600;
 }
 
 .page-section {
