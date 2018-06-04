@@ -4,9 +4,13 @@ from .models import Recipe
 from django.http import HttpResponse
 import datetime
 import json
+import random
+import string
 
 # Create your views here.
+
 def index(request):
+
 
     recipes=Recipe.objects.all()
     
@@ -17,6 +21,7 @@ def userrecipe(request):
     
     if 'uid' in request.COOKIES:
         user = request.COOKIES['uid']
+
         recipes=Recipe.objects.filter(userid=user)
     else:
         return redirect('/member/login') 
@@ -24,51 +29,12 @@ def userrecipe(request):
 
 def showrecipe(request,id):
 
-    cooktimelist = [10,20,30,45,60,90]
-    portionlist = [1,2,3,4,5,6,7,8,9,10]
-    veganlist = ["葷食","蛋奶素","素食"]
+
     #todo 根據會員編號取得會員資料傳給update.html
     recipe=Recipe.objects.get(recid=int(id))
     fodlist = json.loads(recipe.recfood)
     stplist = json.loads(recipe.recstep)
 
-
-    if request.method == 'POST':  
-        userId = request.POST["userId"]      
-        recName = request.POST["recName"]  
-        # recipe=Recipe.objects.get(recid=int(id))
-        try:
-            request.FILES['recCover']
-        except:
-            pass
-        else:
-            myfile = request.FILES['recCover']        
-            fs = FileSystemStorage()
-            recCoverName="rec"+userId+"_"+recName+".jpg"
-            fs.save(recCoverName,myfile)
-            recipe.reccover=recCoverName
-            # reccoverimg=recCoverName
-
-        recDesc = request.POST["recDesc"]
-        recTime = request.POST["recTime"]
-        recPortion = request.POST["recPortion"]
-        recCal = request.POST["recCal"]
-        recVegan = request.POST["recVegan"]
-        recFood = request.POST["recFood"]
-        recStep = request.POST["recStep"]    
-
-        recipe.recname=recName
-        
-        recipe.recdesc=recDesc
-        recipe.rectime=recTime
-        recipe.recportion=recPortion
-        recipe.reccal=recCal
-        recipe.recvegan=recVegan
-        recipe.recfood=recFood
-        recipe.recstep=recStep
-
-        recipe.save()
-        return redirect('/recipe')
 
     return render(request,'recipe/showrecipe.html',locals())
 
@@ -80,20 +46,18 @@ def create(request):
         cooktimelist = [10,20,30,45,60,90]
         portionlist = [1,2,3,4,5,6,7,8,9,10]
         
-        if request.method == 'POST':
-        
+        if request.method == 'POST' and request.FILES['recCover']:
+
             userId = user
             recName = request.POST["recName"]
 
-            try:
-                myfile = request.FILES['recCover']
-            except:
-                pass
-            else:
-                fs = FileSystemStorage()
-                recCoverName="rec"+userId+"_"+recName+".jpg"
-                fs.save(recCoverName,myfile)
-                # reccoverimg=recCoverName
+            myfile = request.FILES['recCover']
+            fs = FileSystemStorage()
+            filename = userId[0:3]
+            rd = str(random.randint(0,9999))
+            recCoverName="rec_"+filename+"_"+recName+rd+".jpg"
+            fs.save(recCoverName,myfile)
+               
             
             recDesc = request.POST["recDesc"]
             recTime = request.POST["recTime"]
@@ -135,7 +99,7 @@ def update(request,id):
         if request.method == 'POST':  
             userId = user      
             recName = request.POST["recName"]  
-            # recipe=Recipe.objects.get(recid=int(id))
+            
             try:
                 request.FILES['recCover']
             except:
@@ -143,10 +107,12 @@ def update(request,id):
             else:
                 myfile = request.FILES['recCover']        
                 fs = FileSystemStorage()
-                recCoverName="rec"+userId+"_"+recName+".jpg"
+                filename = userId[0:3]
+                rd = str(random.randint(0,9999))
+                recCoverName="rec_"+filename+"_"+recName+rd+".jpg"
                 fs.save(recCoverName,myfile)
                 recipe.reccover=recCoverName
-                # reccoverimg=recCoverName
+                
 
             recDesc = request.POST["recDesc"]
             recTime = request.POST["recTime"]
