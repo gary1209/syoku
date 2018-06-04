@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<div class="container">
+    <div class="card" style="margin :auto">
+        <div class="card-header" style="margin: auto;padding-top: 40px">
+            <h2>ReGiStEr FoR YoUr CoMpAnY</h2>
+        </div>
+        <hr style="border: solid 1px black">
+        <div class="card-body" style="margin: 0 auto">
+<form method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+    <div class="form-group">
+         <div class="col-md-12" style="margin: auto">
+             <label for="CoMpAnY email">請輸入你的email</label>
+                <input type="email" class="form-control" name="Company_email" id="Company_eamil" placeholder="Enter your email" style="border:solid 1px black">
+        </div>
+     </div>
+     <button type="submit" class="btn btn-primary mt-2">
+    <i class="fa fa-sign-in" aria-hidden="true"></i>寄出你的密碼到您的email中</button>
+</form>
+</div></div></div>
+
+
+
+
+
+
+{% endblock %}

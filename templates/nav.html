@@ -30,7 +30,15 @@
             <span>您好 {{request.COOKIES.name}} &nbsp;</span>
             <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
             {% else %}
-            <a href="{% url 'member:login' %}" class="btn btn-primary my-2 my-sm-0">登入</a>
+
+            <a href="{% url 'gary:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
+            {% endif %}
+            &nbsp;&nbsp;&nbsp;
+            {% if request.COOKIES.Company_email %}
+            <a href="{% url 'jabor:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+            {% else %}
+            <a href="{% url 'jabor:login' %}" class="btn btn-primary my-2 my-sm-0">公司登入</a>
+
             {% endif %}
         </div>
       </ul>
