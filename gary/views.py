@@ -6,12 +6,14 @@ from django.contrib import messages
 
 from .models import Comment
 from .forms import CommentForm
+from storemenu.models import Storemenu
 
 # Create your views here.
 
 def index(request):
 	# return HttpResponse("<h2>Home about</h2>")
-	return render(request,'gary/index.html')
+    storemenu = Storemenu.objects.all()
+    return render(request,'gary/index.html',locals())
 
 
 

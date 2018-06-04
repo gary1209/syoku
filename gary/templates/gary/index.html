@@ -1,22 +1,202 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+<style>
+    table {
+        table-layout: fixed;
+        word-break: break-all;
+        word-wrap: break-word;
+        border: 3px black solid
+    }
+
+    th {
+        border: 2px white solid;
+        word-wrap: break-word;
+    }
+
+    td {
+        border: 2px white solid;
+        word-wrap: break-word;
+
+    }
+
+    img {
+        width: 100%;
+    }
+</style>
 <div class="container">
     <div class="row">
-            <div class="col-12 col-md-4">
-                <img src="{% static 'images/0.gif' %}">
-            </div>
-            <div class="col-12 col-md-4">
-                <img src="{% static 'images/0.gif' %}">
-            </div>
-            <div class="col-12 col-md-4">
-                <img src="{% static 'images/0.gif' %}">
-            </div>
-            <div class="col-12 col-md-4">
-                <img src="{% static 'images/0.gif' %}">
-            </div>
-            
+        <div class="col-12 col-md-3">
+            {% for storemenu in storemenu %}
+                <div class="card " style="border: 3px solid black;">
+                    <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
+                        <p class="card-text">{{storemenu.cintroduction}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">葷素: {{storemenu.ctype}}</li>
+                        <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-12 col-md-3">
+            {% for storemenu in storemenu %}
+                <div class="card " style="border: 3px solid black;">
+                    <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
+                        <p class="card-text">{{storemenu.cintroduction}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">類型: {{storemenu.ctype}}</li>
+                        <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
+                        <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-12 col-md-6">
+            <table class="table" style="background-color: #f9ebc0;color:black;text-align: center">
+                <thead style="background-color: #1eb4ab;color:white">
+                    <tr>
+                        <th>BREAKFAST</th>>
+                        <th>LUNCH</th>>
+                        <th>DINNER</th>>
+                    </tr>
+                </thead>
+                <tbody id="monday" name="monday">
+                    <tr>
+                        <th colspan="3">Monday</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0" class="dropzone" ondragenter="dragenterHandler(event)" ondragover="dragoverHandler(event)">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0" class="dropzone">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0" class="dropzone">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="tuesday" name="tuesday">
+                    <tr>
+                        <th colspan="3">Tuesday</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="wednesday" name="wednesday">
+                    <tr>
+                        <th colspan="3">Wednesday</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="thursday" name="thursday">
+                    <tr>
+                        <th colspan="3">Thursday</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="friday" name="friday">
+                    <tr>
+                        <th colspan="3">Friday</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="saturday" name="saturday">
+                    <tr>
+                        <th colspan="3">Saturday</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="sunday" name="sunday">
+                    <tr>
+                        <th colspan="3">Sunday</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                        <td style="padding: 0">
+                            <img src="{% static 'images/empty.png' %}">
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <th colspan="3"><button class="btn btn-primary">儲存</button></th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
     </div>
 </div>
 
+{% endblock %}
+{% block scripts %}
+<script>
+function dragenterHandler(e) {
+    e.preventDefault();
+}
+
+function dragoverHandler(e) {
+    e.preventDefault();
+}
+</script>
 {% endblock %}

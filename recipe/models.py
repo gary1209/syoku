@@ -16,6 +16,6 @@ class Recipe(models.Model):
     recstep = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'recipe'
 

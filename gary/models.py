@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from storemenu.models import Storemenu
+
 
 class Comment(models.Model):
     text = models.TextField(max_length=1000)
