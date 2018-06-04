@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Recipe(models.Model):
     recid = models.AutoField(primary_key=True)
-    userid = models.CharField(max_length=20)
+    userid = models.CharField(max_length=50)
     recname = models.CharField(max_length=20)
     reccover = models.CharField(max_length=300)
     recdesc = models.CharField(max_length=200)

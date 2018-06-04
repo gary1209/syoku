@@ -53,7 +53,7 @@ def create(request):
 
             myfile = request.FILES['recCover']
             fs = FileSystemStorage()
-            filename = userId[0:3]
+            filename = userId[1:4]
             rd = str(random.randint(0,9999))
             recCoverName="rec_"+filename+"_"+recName+rd+".jpg"
             fs.save(recCoverName,myfile)
@@ -107,7 +107,7 @@ def update(request,id):
             else:
                 myfile = request.FILES['recCover']        
                 fs = FileSystemStorage()
-                filename = userId[0:3]
+                filename = userId[1:4]
                 rd = str(random.randint(0,9999))
                 recCoverName="rec_"+filename+"_"+recName+rd+".jpg"
                 fs.save(recCoverName,myfile)

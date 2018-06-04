@@ -13,7 +13,7 @@
    
       <ul class="navbar-nav mx-auto">
         <li class="nav-item active px-lg-4">
-          <a class="nav-link text-uppercase text-expanded" href="{% url 'jabor:index' %}">Home</a>
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'gary:index' %}">Home</a>
         </li>
         <li class="nav-item px-lg-4">
           <a class="nav-link text-uppercase text-expanded" href="{% url 'jabor:update' %}">update</a>
@@ -21,6 +21,23 @@
         <li class="nav-item px-lg-4">
           <a class="nav-link text-uppercase text-expanded" href="{% url 'storemenu:userindex' %}">Storemenu</a>
         </li>
+        <div class="form-inline my-2 my-lg-0">
+            {% if request.COOKIES.uid %}
+            <!-- <span>您好 {{request.COOKIES.uid}} &nbsp;</span> -->
+            <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+            {% else %}
+
+
+            <a href="{% url 'member:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
+            {% endif %}
+            &nbsp;&nbsp;&nbsp;
+            {% if request.COOKIES.Company_email %}
+            <a href="{% url 'jabor:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+            {% else %}
+            <a href="{% url 'jabor:login' %}" class="btn btn-primary my-2 my-sm-0">公司登入</a>
+
+            {% endif %}
+        </div>
       </ul>
    
     </div>

@@ -65,7 +65,7 @@ def register(request):
         Company_data.objects.create(Company_name=Company_name, Company_password=Company_password, Company_email=Company_email, Company_photo=Company_photo, Company_tele=Company_tele,
                                     Company_address=Company_address, Company_open_time=Company_open_time, Company_close_time=Company_close_time)
 
-        return redirect('/gary')
+        return redirect('/jabor/login')
     return render(request, 'jabor/register.html', locals())
 
 
@@ -92,7 +92,7 @@ def login(request):
                 for companys in companys_D:
                     if companys.Company_email == Company_email:
                         print(companys)
-                        response = HttpResponse("<script>alert('登入成功');location.href='/jabor'</script>")
+                        response = HttpResponse("<script>alert('登入成功');location.href='/storemenu'</script>")
 
                         response.set_cookie("Company_email", company_correct[0]['Company_email'])
                                               
