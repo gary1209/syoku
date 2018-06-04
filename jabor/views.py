@@ -4,6 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from .models import Company_data
 from member.models import Member
 import datetime
+import smtplib
 
 
 # Create your views here.
@@ -128,3 +129,29 @@ def logout(request):
     response.delete_cookie('Company_email')
 
     return response
+
+
+def forget_p(request):
+
+
+    if request.method == 'POST':
+        Company_email = request.POST["Company_email"]
+        companys = Company_data.objects.all()
+        companysA = Company_data.objects.filter(Company_email=Company_email).values('Company_email')  # 取得cookie的資料庫id為多少3 ,
+        # print(companysA)
+        companysB = Company_data.objects.filter(Company_email=Company_email).values('Company_password')
+        company_e = companysA[0]['Company_email']
+        company_p = companysB[0]['Company_password']
+        # print(company_p)       
+
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login("ghostyydd@gmail.com", "davidbitch")
+    
+        msg = company_p
+        server.sendmail("ghostyydd@gmail.com", company_e , msg)
+        server.quit()
+        return redirect('/jabor/login')
+
+    return render(request, 'jabor/forget_p.html', locals())
