@@ -167,26 +167,27 @@
           
       })                             
     })
-
+    var coverflag = false
     function openFile(event){
         var input = event.target
         var reader = new FileReader()
+        coverflag =true
         reader.readAsDataURL(input.files[0])
         reader.onload = function(){
-            var dataURL = reader.result
-            $('#imgrecipename').attr('src', dataURL).show()
+        var dataURL = reader.result
+        $('#imgrecipename').attr('src', dataURL).show()
         }
     }
 
     function sb(){
-        //  console.log(recName.val)
-        // if(recName !=null && recCover !=undefined && recDesc !=null && recCal !=null &&  recFood !=null && recStep !=null){
+        
+        if(recName !=null && coverflag ==true && recDesc !=null && recCal !=null &&  recFood !=null && recStep !=null){
            $('#reciptform').submit()
-        // }
-        // else{
-        //     alert("資料輸入不完全")
+        }
+        else{
+            alert("資料輸入不完全")
             
-        // }
+        }
     }
     
     </script>
