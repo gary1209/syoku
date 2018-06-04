@@ -135,30 +135,3 @@ def resetpwd(request,id):
     return render(request,'member/resetpwd.html',locals())
 
 
-
-
-
-#  def resetpwd(request,id):
-#     if request.method == 'POST':        
-#         username = request.POST["username"]   
-#         password = request.POST["password"]   
-        
-#         userbirth = request.POST["userbirth"]
-#         useraddress = request.POST["useraddress"]
-
-#         # 修改資料庫中的會員資料
-#         member = Member.objects.get(id=int(id))
-        
-#         member.username = username
-#         member.password = password
-#         member.userbirth = userbirth
-#         member.useraddress = useraddress
-#         member.save()
-
-#         return redirect('/member')
-
-#     # title = "會員修改"
-#     # 根據會員編號取得會員資料傳給update.html
-#     member = Member.objects.get(id=int(id))
-#     return render(request,'member/update.html',locals())
- 
