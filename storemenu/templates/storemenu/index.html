@@ -1,71 +1,49 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container" style="font-family: 'SimSun'">
-<<<<<<< HEAD
-  <div class="card card-register mx-auto mt-5">
-    <div class="card-header">
-      {{title}}
-      <a href="{% url 'storemenu:create' %}" class="btn btn-secondary">新增</a>
-    </div>
-    <div class="row m-3" id="tooo">
-      {% for storemenu in storemenu %}
-      <div class="col-6 col-md-3 mb-3">
-        <div class="card " style="border: 3px solid black;">
-          <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
-          <div class="card-body">
-            <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
-            <p class="card-text">{{storemenu.cintroduction}}</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">類型: {{storemenu.ctype}}</li>
-            <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
-            <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
-          </ul>
-=======
-    <div class="card card-register mx-auto mt-5">
-      <div class="card-header">
-          {{title}}
-            <a href="{% url 'storemenu:create' %}" class="btn" style="background-color: #e6a756; font-weight: 500;color: black">新增</a>
-      </div>
-      <div class="row m-3" id="tooo" >
-      {% for storemenu in storemenu %}
-      <div class="col-6 col-md-3 mb-3" >
+<div class="card card-register mx-auto mt-5">
+  <div class="card-header">
+    {{title}}
+    <a href="{% url 'storemenu:create' %}" class="btn" style="background-color: #e6a756; font-weight: 500;color: black">新增</a>
+  </div>
+  <div class="row m-3" id="tooo">
+    {% for storemenu in storemenu %}
+    <div class="col-6 col-md-3 mb-3">
       <div class="card " style="border: 3px solid black;">
-            <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
-            <div class="card-body">
-              <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
-              <p class="card-text"  >{{storemenu.cintroduction}}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">類型: {{storemenu.ctype}}</li>
-              <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
-              <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
-            </ul>
+        <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+        <div class="card-body">
+          <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
+          <p class="card-text">{{storemenu.cintroduction}}</p>
         </div>
-          </div>   {% endfor %}
->>>>>>> 91786bfca0056ed5635abfc76fcc465521ded014
-        </div>
-      </div> 
-      {% endfor %}
-    </div>
-    <div class="card-body">
-    </div>
-    <div class="modal fade" id="exampleModal" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
-        <img sid="imgall" id="imgalll" src="" style="width: 1000px;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">類型: {{storemenu.ctype}}</li>
+          <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
+          <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
+        </ul>
+
+
       </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="card-body">
+  </div>
+  <div class="modal fade" id="exampleModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
+      <img sid="imgall" id="imgalll" src="" style="width: 1000px;">
     </div>
   </div>
+</div>
 
-  <script>
-    $(document).ready(function () {
-      $('#tooo').on('click', '#imgall', function () {
-        img = $(this).attr('src')
-        // alert(img)
-        $("#imgalll").attr('src', img)
+<script>
+  $(document).ready(function () {
+    $('#tooo').on('click', '#imgall', function () {
+      img = $(this).attr('src')
+      // alert(img)
+      $("#imgalll").attr('src', img)
 
-      })
     })
-  </script>
+  })
+</script>
 
 </div>
 {% endblock %}
