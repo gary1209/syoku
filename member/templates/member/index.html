@@ -5,12 +5,13 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
-<div class="container" style="background-color: orange;">
+
+<div class="container" style="background-color: orange; font-family: 微軟正黑體 ">
     <div class="card card-register mx-auto mt-2">
         <!-- <div class="card-header">Register an Account</div> -->
     <div class="card-body" >      
 
-<h3 style="text-align:center">會員資料</h3>
+<h4 style="text-align:center ;font-family: 微軟正黑體">會員資料</h4>
 
 <a href="{% url 'member:create' %}" class="btn btn-secondary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> 會員新增</a>
 <table class="table">
@@ -41,6 +42,8 @@
         </tr>
         {% endfor %}
     </tbody>
+
+    
 </table>
 
 </div>

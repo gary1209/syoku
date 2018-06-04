@@ -98,3 +98,67 @@ def logout(request):
     response.delete_cookie('name')
     return response
 
+
+def forgetpwd(request):
+    if request.method == 'POST':
+        email = request.POST['useremail']
+        member = Member.objects.filter(useremail=email)
+        memberid=member[0].id
+
+        return redirect("/member/resetpwd/%s" %(memberid))
+
+    return render(request,'member/forgetpwd.html',locals()) 
+
+
+def resetpwd(request,id):
+    if request.method == 'POST':
+
+        password = request.POST["password"]      
+        password2 = request.POST["password2"]
+
+        if password == password2:        
+            
+
+        # 修改資料庫中的會員資料
+            member = Member.objects.get(id=int(id))
+            member.password = password
+    
+            member.save()
+
+            return redirect('/member/login')
+        else:
+            response = HttpResponse("<script>alert('密碼不同');location.href='./%s' </script>" %(id))
+            return response
+
+
+    member = Member.objects.get(id=int(id))
+    return render(request,'member/resetpwd.html',locals())
+
+
+
+
+
+#  def resetpwd(request,id):
+#     if request.method == 'POST':        
+#         username = request.POST["username"]   
+#         password = request.POST["password"]   
+        
+#         userbirth = request.POST["userbirth"]
+#         useraddress = request.POST["useraddress"]
+
+#         # 修改資料庫中的會員資料
+#         member = Member.objects.get(id=int(id))
+        
+#         member.username = username
+#         member.password = password
+#         member.userbirth = userbirth
+#         member.useraddress = useraddress
+#         member.save()
+
+#         return redirect('/member')
+
+#     # title = "會員修改"
+#     # 根據會員編號取得會員資料傳給update.html
+#     member = Member.objects.get(id=int(id))
+#     return render(request,'member/update.html',locals())
+ 

@@ -11,7 +11,9 @@ urlpatterns = [
     path('delete/<int:id>', views.delete,name='delete'),
     path('login/', views.login,name='login'),
     path('logout/', views.logout,name='logout'),
-   
+
+    path('forgetpwd/', views.forgetpwd,name='forgetpwd'),
+    path('resetpwd/<int:id>', views.resetpwd,name='resetpwd'),
 
     
     # path('captcha/',include('captcha.urls'))

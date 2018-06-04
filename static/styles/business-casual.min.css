@@ -5,7 +5,8 @@
  */
 body {
     font-family: Lora;
-    background: linear-gradient(rgba(47, 23, 15, .65), rgba(47, 23, 15, .65)), url(../images/bg.jpg);
+    background: linear-gradient(rgba(47, 23, 15, .50), rgba(47, 23, 15, .50)),  url(../images/bg.jpg);
+    /* background: linear-gradient(rgba(47, 23, 15, .65), rgba(47, 23, 15, .65)), url(../images/bg.jpg); */
     background-attachment: fixed;
     background-position: center;
     background-size: cover
