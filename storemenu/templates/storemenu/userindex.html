@@ -2,38 +2,39 @@
 {% block content %}
 <div class="container" style="font-family: 'SimSun'">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">
-        {{Company_email}}
+      <div class="card-header" style="font-weight: 900;color: black ;font-size: 30px">
+          <!-- 一定要連結其他資料庫  不然會錯誤 -->
+        {{Company.Company_name}}
         {{title}}
-            <a href="{% url 'storemenu:create' %}" class="btn btn-secondary">新增</a>
-            <a href="{% url 'storemenu:index' %}" class="btn btn-secondary">全部美食</a>
+            <a href="{% url 'storemenu:create' %}" class="btn" style="background-color: #e6a756; font-weight: 500;color: black">新增</a>
+            <a href="{% url 'storemenu:index' %}" class="btn" style="background-color: #e6a756; font-weight: 500;color: black">全部美食</a>
       </div>
       <div class="card-body">
-<table class="table" >
+<table class="table table-hover" >
     <thead >
         <tr class="row ">
-            <th class="col">美食圖片</th>
-            <th class="col">美食名稱</th>
-            <th class="col">美食類型</th>
-            <th class="col">美食熱量</th>
-            <th class="col">美食價錢</th>
-            <th class="col-4">美食介紹</th>
-            <th class="col-2">操作</th>
+            <th class="col-2" style="background-color: #e6a756">美食圖片</th>
+            <th class="col" style="background-color: #e6a756">美食名稱</th>
+            <th class="col" style="background-color: #e6a756">美食類型</th>
+            <th class="col" style="background-color: #e6a756">美食熱量</th>
+            <th class="col" style="background-color: #e6a756">美食價錢</th>
+            <th class="col-4" style="background-color: #e6a756">美食介紹</th>
+            <th class="col-1" style="background-color: #e6a756">操作</th>
         </tr>
     </thead>
     <tbody id="tobddy">
         {% for storemenu in storemenu %}
         <tr class="row">
-            <td class="col"><a href="#"><img id="imgall" src="/media/{{storemenu.cimg}}" data-toggle="modal" data-target="#exampleModal" style="width: 100px; height: 100px;"></a></td>
+            <td class="col-2"><a href="#"><img id="imgall" src="/media/{{storemenu.cimg}}" data-toggle="modal" data-target="#exampleModal" style="width: 100px; height: 100px;"></a></td>
             <td class="col">{{storemenu.cname}}</td>
 
             <td class="col">{{storemenu.ctype}}</td>
             <td class="col">{{storemenu.ccal}}</td>
             <td class="col">{{storemenu.cprice}}</td>
             <td class="col-4">{{storemenu.cintroduction}}</td>
-            <td class="col-2">
-                <a href="{% url 'storemenu:update' storemenu.id %}" class="btn btn-secondary">編輯</a>
-                <a href="{% url 'storemenu:delete' storemenu.id %}" class="btn btn-danger">刪除</a>
+            <td class="col-1">
+                <a href="{% url 'storemenu:update' storemenu.id %}" class="btn btn-secondary mb-3">編輯</a>
+                <a href="{% url 'storemenu:delete' storemenu.id %}" class="btn btn-outline-dark">刪除</a>
             </td>
         </tr>
 

@@ -10,13 +10,14 @@
     <div class="form-group row">
         <label for="cname" class="col-sm-2 col-form-label ">美食名稱</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control " value="{{storemenu.cname}}" name="cname" id="cname" placeholder="美食名稱">
+            <input type="text" class="form-control " value="{{storemenu.cname}}" name="cname" id="cname" placeholder="美食名稱" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="cimg" class="col-sm-2 col-form-label">美食圖片</label>
         <div class="col-sm-10">
-            <input type="file" class="form-control"  name="cimg" id="cimg">
+                <img id="output" height="200"  src="/media/{{storemenu.cimg}}" >
+            <input type="file" class="form-control"  name="cimg" id="cimg" onchange="openFile(event)" required>
         </div>
     </div>
     <div class="form-group row">
@@ -37,19 +38,19 @@
     <div class="form-group row">
         <label for="ccal" class="col-sm-2 col-form-label">美食熱量</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control " value="{{storemenu.ccal}}" name="ccal" id="ccal" placeholder="熱量" step="0.1">
+            <input type="number" class="form-control " value="{{storemenu.ccal}}" name="ccal" id="ccal" placeholder="熱量" step="0.1" required> 
         </div>
     </div>
     <div class="form-group row">
         <label for="cprice" class="col-sm-2 col-form-label">美食價錢</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" value="{{storemenu.cprice}}" name="cprice" id="cprice" placeholder="價錢" step="0.1">
+            <input type="number" class="form-control" value="{{storemenu.cprice}}" name="cprice" id="cprice" placeholder="價錢" step="0.1" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="cintroduction" class="col-sm-2 col-form-label">美食介紹</label>
         <div class="col-sm-10">
-            <textarea class="form-control" name="cintroduction" id="cintroduction" placeholder="美食介紹說明">{{storemenu.cintroduction}}</textarea>
+            <textarea class="form-control" name="cintroduction" id="cintroduction" placeholder="美食介紹說明" required>{{storemenu.cintroduction}}</textarea>
         </div>
     </div>
     <div class="form-group row">
@@ -62,7 +63,20 @@
             $(document).ready(function () {
                 $('option[value="{{storemenu.ctype}}"]').prop('selected',true)
                 // $('input#cimg').val('123456')
-            })
+            });
+
+        function openFile(event) {
+            var input = event.target; //取得上傳檔案
+            var reader = new FileReader(); //建立FileReader物件
+
+            reader.readAsDataURL(input.files[0]); //以.readAsDataURL將上傳檔案轉換為base64字串
+
+            reader.onload = function () { //FileReader取得上傳檔案後執行以下內容
+                var dataURL = reader.result; //設定變數dataURL為上傳圖檔的base64字串
+                $('#output').attr('src', dataURL).show(); //將img的src設定為dataURL並顯示
+            };
+        }
+
 </script>
 </div>
 </div>
