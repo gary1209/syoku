@@ -7,15 +7,16 @@ from django.contrib import messages
 from .models import Comment
 from .forms import CommentForm
 from storemenu.models import Storemenu
+from recipe.models import Recipe
 
 # Create your views here.
 
+
 def index(request):
-	# return HttpResponse("<h2>Home about</h2>")
+        # return HttpResponse("<h2>Home about</h2>")
     storemenu = Storemenu.objects.all()
-    return render(request,'gary/index.html',locals())
-
-
+    recipes   = Recipe.objects.all()
+    return render(request, 'gary/index.html', locals())
 
 
 def comments(request):
@@ -31,7 +32,8 @@ def comments(request):
                 'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
                 'response': recaptcha_response
             }
-            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+            r = requests.post(
+                'https://www.google.com/recaptcha/api/siteverify', data=data)
             result = r.json()
             ''' End reCAPTCHA validation '''
 
@@ -49,4 +51,4 @@ def comments(request):
 
 
 def login(request):
-    return render(request,'gary/login.html')
+    return render(request, 'gary/login.html')

@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} 
+{% block styles%}
+<link href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}" rel="stylesheet">
 <style>
     table {
         table-layout: fixed;
@@ -21,30 +23,38 @@
     img {
         width: 100%;
     }
+    
+    .active{
+        opacity: .4;
+    }
 </style>
+{% endblock %}
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-3">
-            {% for storemenu in storemenu %}
-                <div class="card " style="border: 3px solid black;">
-                    <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+            {% for recipe in recipes %}
+                <div class="card draggable" style="border: 3px solid black;">
+                    <a href="{% url 'recipe:showrecipe' recipe.recid %}">
+                    <img class="card-img-top" src="/media/{{recipe.reccover}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                    </a>
                     <div class="card-body">
-                        <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
-                        <p class="card-text">{{storemenu.cintroduction}}</p>
+                        <h4 class="card-title" style="font-weight: 900">[食譜]{{recipe.recname}}</h4>
+                        <p class="card-text">{{recipe.recdesc}}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">葷素: {{storemenu.ctype}}</li>
-                        <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
+                        <li class="list-group-item">葷素: {{recipe.recvegan}}</li>
+                        <li class="list-group-item">熱量: {{recipe.reccal}}</li>
                     </ul>
                 </div>
             {% endfor %}
         </div>
         <div class="col-12 col-md-3">
             {% for storemenu in storemenu %}
-                <div class="card " style="border: 3px solid black;">
+                <div class="card draggable" style="border: 3px solid black;">
                     <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
                     <div class="card-body">
-                        <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
+                        <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
                         <p class="card-text">{{storemenu.cintroduction}}</p>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -66,10 +76,11 @@
                 </thead>
                 <tbody id="monday" name="monday">
                     <tr>
-                        <th colspan="3">Monday</th>
+                        <th colspan="3">Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>熱量:0大卡</small></th>
                     </tr>
                     <tr>
-                        <td style="padding: 0" class="dropzone" ondragenter="dragenterHandler(event)" ondragover="dragoverHandler(event)">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
                         <td style="padding: 0" class="dropzone">
@@ -82,96 +93,102 @@
                 </tbody>
                 <tbody id="tuesday" name="tuesday">
                     <tr>
-                        <th colspan="3">Tuesday</th>
+                        <th colspan="3">Tuesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>熱量:0大卡</small></th>
                     </tr>
                     <tr>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
                     </tr>
                 </tbody>
                 <tbody id="wednesday" name="wednesday">
                     <tr>
-                        <th colspan="3">Wednesday</th>
+                        <th colspan="3">Wednesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>熱量:0大卡</small></th>
                     </tr>
                     <tr>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
                     </tr>
                 </tbody>
                 <tbody id="thursday" name="thursday">
                     <tr>
-                        <th colspan="3">Thursday</th>
+                        <th colspan="3">Thursday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>熱量:0大卡</small></th>
                     </tr>
                     <tr>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
                     </tr>
                 </tbody>
                 <tbody id="friday" name="friday">
                     <tr>
-                        <th colspan="3">Friday</th>
+                        <th colspan="3">Friday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>熱量:0大卡</small></th>
                     </tr>
                     <tr>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
                     </tr>
                 </tbody>
                 <tbody id="saturday" name="saturday">
                     <tr>
-                        <th colspan="3">Saturday</th>
+                        <th colspan="3">Saturday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>熱量:0大卡</small></th>
                     </tr>
                     <tr>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
                     </tr>
                 </tbody>
                 <tbody id="sunday" name="sunday">
                     <tr>
-                        <th colspan="3">Sunday</th>
+                        <th colspan="3">Sunday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>熱量:0大卡</small></th>
                     </tr>
                     <tr>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
-                        <td style="padding: 0">
+                        <td style="padding: 0" class="dropzone">
                             <img src="{% static 'images/empty.png' %}">
                         </td>
                     </tr>
@@ -190,13 +207,37 @@
 
 {% endblock %}
 {% block scripts %}
+<script src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
 <script>
-function dragenterHandler(e) {
-    e.preventDefault();
-}
-
-function dragoverHandler(e) {
-    e.preventDefault();
-}
+    var a = 300;
+    $(".draggable").draggable({
+        // brings the item back to its place when dragging is over
+		revert:true, 
+        
+        // let the dragged item always on the top
+        stack: ".draggable"
+        
+        
+    });   
+    
+    $( ".dropzone" ).droppable({
+          
+        
+        drop: function( event, ui) {
+            // alert("hi")   
+            // $( ".draggable" ).remove(); 
+            // $(this).html("<img style='width:100%' src='/media/麥香雞餐.png'>").draggable()  
+            // $("<img src='''{% static '/media/recDavid_小黃瓜炒嫩雞丁.jpg' %}'''>").html(this).draggable(); 
+            
+            var basket = $(this);
+			var move = ui.draggable;
+            function addBasket(basket, move) {
+			basket.html(move.find(".card-title").html() + 
+                "<img src='"  + move.find("img").attr("src") + "'>"
+            );
+            }
+            addBasket(basket,move)
+        }   
+    });  
 </script>
 {% endblock %}

@@ -13,8 +13,7 @@ class Recipe(models.Model):
     reccal = models.IntegerField()
     recvegan = models.CharField(max_length=20)
     recfood = models.TextField()  # This field type is a guess.
-    recstep = models.TextField(blank=True, null=True)  # This field type is a guess.
-
+    recstep = models.TextField()  # This field type is a guess. blank=True, null=True
     class Meta:
         managed = True
         db_table = 'recipe'
