@@ -23,7 +23,8 @@
             {% for recipe in recipes %}
             <tr class="row">
                 <td class="col-2">
-                    <img src="/media/{{recipe.reccover}}" class="img-thumbnail" style="width:150px">
+                        <a href="{% url 'recipe:showrecipe' recipe.recid %}">
+                    <img src="/media/{{recipe.reccover}}" class="img-thumbnail" style="width:150px"></a>
                 
                 </td> 
                 <td class="col-2">{{recipe.recname}}</td>

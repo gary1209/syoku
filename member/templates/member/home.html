@@ -1,6 +1,31 @@
 {% extends 'base.html'%}
 {% block content %}
 
+<div class="container" style="background-color: orange; font-family: 微軟正黑體 ">
+        <div class="card card-register mx-auto mt-2">
+            <!-- <div class="card-header">Register an Account</div> -->
+        <div class="card-body" >      
 
+            
+
+
+</div>
+</div>
+</div>
 
 {% endblock %}
+
+
+
+<!-- 
+{% if request.COOKIES.name %}
+<span>welcome:) {{request.COOKIES.name}} , Thanks for logging in.</span>
+{% else %}
+<span>{{request.COOKIES.name}} </span>
+{% endif %}
+
+{% if request.COOKIES.name %}
+<a class="nav-item nav-link " href="{% url 'member:logout' %}">登出</a>
+{% else %}
+<a class="nav-item nav-link " href="{% url 'member:login' %}" ><i class="fas fa-user-plus"></i> Welcome, Please log in. </a>
+{% endif %} -->
