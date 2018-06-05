@@ -41,7 +41,7 @@
                     <label for="recTime" class="col-sm-4  ">料理時間(分鐘)：</label>
                     <div class="col-sm-4">
                         <select class="select optional form-control" name="recTime" id="recTime">
-                            <option value="0">請選擇</option>
+                            <option value="">請選擇</option>
                             {% for ckt in cooktimelist %}
                             <option value={{ckt}}>{{ckt}}</option>
                             {% endfor %}
@@ -53,7 +53,7 @@
                     <label for="recPortion" class="col-sm-4  ">份量(人份)：</label>
                     <div class="col-sm-4">
                         <select class="select optional form-control" name="recPortion" id="recPortion">
-                            <option value>請選擇</option>                         
+                            <option value="">請選擇</option>                         
                             {% for prt in portionlist %}
                             <option value={{prt}}>{{prt}}</option>
                             {% endfor %}
@@ -123,7 +123,9 @@
  {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
+        
       $(document).ready(function() {
+        
         $('#stepAdd').click(function() {
             $('#cookstep').append( ' <div class="form-inline m-1 " name="stepbar"> <textarea class="form-control" name="step" id="step" rows="3" cols="110" required placeholder="請輸入步驟" style="resize: none"></textarea>  <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>        </div>'
              )
@@ -181,17 +183,15 @@
     }
 
     function sb(){
-        console.log($('#recName').val())
-        // if(recName != null && coverflag == true &&  recDesc != null && recCal != null &&  recFood != null && recStep != null){
-        //    $('#reciptform').submit()
-        // }
-        if($('#recName').val() != null && coverflag == true && $('#recDesc').val() != null && $('#recCal').val() != null &&  $('#recFood').val() != null && $('#recStep').val() != null){
-           $('#reciptform').submit()
+       
+        if($('#recName').val() != "" && coverflag == true && $('#recDesc').val() != "" && $('#recCal').val() != "" &&  $('input[name="food"]').val() != "" && $('input[name="fQty"]').val() && $('textarea[name="step"]').val() != "" && $('#recPortion').val() != "" && $('#recTime').val() != "" ){
+           
+            $('#reciptform').submit()
         }
         else{
             alert("資料輸入不完全")
         }
     }
-    
+
     </script>
     {% endblock %}
