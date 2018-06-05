@@ -40,6 +40,9 @@
     /* .active{
         opacity: .4;
     } */
+    td img {
+        max-height: 92px
+    }
 </style>
 {% endblock %}
 {% block content %}
@@ -230,7 +233,7 @@
 {% block scripts %}
 <script src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
 <script>
-    var a = 100;
+    // var a = 100;
     $(".draggable").draggable({
         // brings the item back to its place when dragging is over
         revert:true, 
