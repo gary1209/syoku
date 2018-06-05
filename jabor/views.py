@@ -92,7 +92,7 @@ def login(request):
                 for companys in companys_D:
                     if companys.Company_email == Company_email:
                         print(companys)
-                        response = HttpResponse("<script>alert('登入成功');location.href='/storemenu'</script>")
+                        response = HttpResponse("<script>alert('登入成功');location.href='/storemenu/userindex'</script>")
 
                         response.set_cookie("Company_email", company_correct[0]['Company_email'])
                                               
