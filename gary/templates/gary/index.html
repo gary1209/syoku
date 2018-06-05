@@ -199,11 +199,14 @@
     
                     <tbody>
                         <tr>
-                            <th colspan="8">標題 &nbsp;:&nbsp;&nbsp;<input type="text" class="btn btu-primary" name="title" ></th>
+                            <th colspan="8">
+                                標題 &nbsp;:&nbsp;&nbsp;
+                                <input type="text" class="btn btu-primary" name="title" >&nbsp;
+                                <input id="btn1" type="submit" class="btn btu-primary" value="儲存">
+                                <a class="btn btn-primary" style="color:white" id="random_plan" onclick="random_plan()">隨機</a>
+                            </th>
                         </tr>
-                        <tr>
-                            <th colspan="8"><input id="btn1" type="submit" class="btn btu-primary" value="儲存"></th>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </form>   
@@ -380,5 +383,26 @@
         $('#fix3').fixedDiv('fix-div', 2);
         $('#fix4').fixedDiv('fix-div', 3);
         $('#fix5').fixedDiv('fix-div', 4);
+
+    $('#random_plan').click(function(){
+        $('td.dropzone').each(function(){
+            $(this).find('img').attr('src',"{% static 'images/4.gif' %}")
+        });
+    });
+    
+    function random_plan(){
+        var items = $('.draggable')
+        var len = items.length
+        // eq(index)
+        // alert(num)
+        
+        $('td.dropzone').each(function(){
+            var num = Math.floor((Math.random() * len) + 1) -1;
+            title = items.eq(num).find(".card-title").text()
+            image_src = items.eq(num).find("img").attr("src")
+            $(this).find('img').attr('src',image_src)
+            $(this).find('input').attr('value',title)
+        });
+    }
 </script>
 {% endblock %}
