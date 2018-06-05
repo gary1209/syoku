@@ -32,9 +32,151 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-3">
+        <div class="col-12">
+            <form method="POST">
+                {% csrf_token %}
+                <table class="table" style="background-color: #f9ebc0;color:black;text-align: center">
+                    <thead style="background-color: #1eb4ab;color:white">
+                        <tr>
+                            <th>食譜</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                            <th>Sunday</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monday" name="monday">
+                            <tr>
+                                <th colspan="1">熱量</th>
+                                <td><small>熱量:0大卡</small></td>
+                                <td><small>熱量:0大卡</small></td>
+                                <td><small>熱量:0大卡</small></td>
+                                <td><small>熱量:0大卡</small></td>
+                                <td><small>熱量:0大卡</small></td>
+                                <td><small>熱量:0大卡</small></td>
+                                <td><small>熱量:0大卡</small></td>
+                            </tr>
+                        </tbody>
+                    <tbody id="monday" name="monday">
+                        <tr>
+                            <th colspan="1">BREAKFAST</th>
+                            <td style="padding: 0" class="dropzone">
+                                <img src="{% static 'images/empty.png' %}">
+                                <input type="hidden" value="" name="1-1">
+                            </td>
+                            <td style="padding: 0" class="dropzone">
+                                <img src="{% static 'images/empty.png' %}">
+                                <input type="hidden" value="" name="2-1">
+                            </td>
+                            <td style="padding: 0" class="dropzone">
+                                <img src="{% static 'images/empty.png' %}">
+                                <input type="hidden" value="" name="3-1">
+                            </td>
+                            <td style="padding: 0" class="dropzone">
+                                <img src="{% static 'images/empty.png' %}">
+                                <input type="hidden" value="" name="4-1">
+                            </td>
+                            <td style="padding: 0" class="dropzone">
+                                <img src="{% static 'images/empty.png' %}">
+                                <input type="hidden" value="" name="5-1">
+                            </td>
+                            <td style="padding: 0" class="dropzone">
+                                <img src="{% static 'images/empty.png' %}">
+                                <input type="hidden" value="" name="6-1">
+                            </td>
+                            <td style="padding: 0" class="dropzone">
+                                <img src="{% static 'images/empty.png' %}">
+                                <input type="hidden" value="" name="7-1">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody id="monday" name="monday">
+                            <tr>
+                                <th colspan="1">LUNCH</th>
+                                <td style="padding: 0" class="dropzone">
+                                    <img src="{% static 'images/empty.png' %}">
+                                    <input type="hidden" value="" name="1-2">
+                                </td>
+                                <td style="padding: 0" class="dropzone">
+                                    <img src="{% static 'images/empty.png' %}">
+                                    <input type="hidden" value="" name="2-2">
+                                </td>
+                                <td style="padding: 0" class="dropzone">
+                                    <img src="{% static 'images/empty.png' %}">
+                                    <input type="hidden" value="" name="3-2">
+                                </td>
+                                <td style="padding: 0" class="dropzone">
+                                    <img src="{% static 'images/empty.png' %}">
+                                    <input type="hidden" value="" name="4-2">
+                                </td>
+                                <td style="padding: 0" class="dropzone">
+                                    <img src="{% static 'images/empty.png' %}">
+                                    <input type="hidden" value="" name="5-2">
+                                </td>
+                                <td style="padding: 0" class="dropzone">
+                                    <img src="{% static 'images/empty.png' %}">
+                                    <input type="hidden" value="" name="6-2">
+                                </td>
+                                <td style="padding: 0" class="dropzone">
+                                    <img src="{% static 'images/empty.png' %}">
+                                    <input type="hidden" value="" name="7-2">
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody id="monday" name="monday">
+                                <tr>
+                                    <th colspan="1">DINNER</th>
+                                    <td style="padding: 0" class="dropzone">
+                                        <img src="{% static 'images/empty.png' %}">
+                                        <input type="hidden" value="" name="1-3">
+                                    </td>
+                                    <td style="padding: 0" class="dropzone">
+                                        <img src="{% static 'images/empty.png' %}">
+                                        <input type="hidden" value="" name="2-3">
+                                    </td>
+                                    <td style="padding: 0" class="dropzone">
+                                        <img src="{% static 'images/empty.png' %}">
+                                        <input type="hidden" value="" name="3-3">
+                                    </td>
+                                    <td style="padding: 0" class="dropzone">
+                                        <img src="{% static 'images/empty.png' %}">
+                                        <input type="hidden" value="" name="4-3">
+                                    </td>
+                                    <td style="padding: 0" class="dropzone">
+                                        <img src="{% static 'images/empty.png' %}">
+                                        <input type="hidden" value="" name="5-3">
+                                    </td>
+                                    <td style="padding: 0" class="dropzone">
+                                        <img src="{% static 'images/empty.png' %}">
+                                        <input type="hidden" value="" name="6-3">
+                                    </td>
+                                    <td style="padding: 0" class="dropzone">
+                                        <img src="{% static 'images/empty.png' %}">
+                                        <input type="hidden" value="" name="7-3">
+                                    </td>
+                                </tr>
+                            </tbody>
+    
+                    <tbody>
+                        <tr>
+                            <th colspan="8">標題 &nbsp;:&nbsp;&nbsp;<input type="text" class="btn btu-primary" name="title" ></th>
+                        </tr>
+                        <tr>
+                            <th colspan="8"><input id="btn1" type="submit" class="btn btu-primary" value="儲存"></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="row">
             {% for recipe in recipes %}
-                <div class="card draggable" style="border: 3px solid black;">
+                <div class="card draggable col-md-6" style="border: 3px solid black;">
                     <a href="{% url 'recipe:showrecipe' recipe.recid %}">
                     <img class="card-img-top" src="/media/{{recipe.reccover}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
                     </a>
@@ -48,10 +190,12 @@
                     </ul>
                 </div>
             {% endfor %}
+            </div>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-6">
+            <div class="row">
             {% for storemenu in storemenu %}
-                <div class="card draggable" style="border: 3px solid black;">
+                <div class="card draggable col-md-6" style="border: 3px solid black;">
                     <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
                     <div class="card-body">
                         <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
@@ -64,171 +208,8 @@
                     </ul>
                 </div>
             {% endfor %}
+            </div>
         </div>
-        <div class="col-12 col-md-6">
-            <form method="post">
-                {% csrf_token %}
-            <table class="table" style="background-color: #f9ebc0;color:black;text-align: center">
-                <thead style="background-color: #1eb4ab;color:white">
-                    <tr>
-                        <th>BREAKFAST</th>>
-                        <th>LUNCH</th>>
-                        <th>DINNER</th>>
-                    </tr>
-                </thead>
-                <tbody id="monday" name="monday">
-                    <tr>
-                        <th colspan="3">Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <small>熱量:0大卡</small></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="1-1">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="1-2">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="1-3">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody id="tuesday" name="tuesday">
-                    <tr>
-                        <th colspan="3">Tuesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <small>熱量:0大卡</small></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="2-1">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="2-2">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="2-3">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody id="wednesday" name="wednesday">
-                    <tr>
-                        <th colspan="3">Wednesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <small>熱量:0大卡</small></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="3-1">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="3-2">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="3-3">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody id="thursday" name="thursday">
-                    <tr>
-                        <th colspan="3">Thursday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <small>熱量:0大卡</small></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="4-1">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="4-2">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="4-3">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody id="friday" name="friday">
-                    <tr>
-                        <th colspan="3">Friday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <small>熱量:0大卡</small></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="5-1">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="5-2">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="5-3">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody id="saturday" name="saturday">
-                    <tr>
-                        <th colspan="3">Saturday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <small>熱量:0大卡</small></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="6-1">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="6-2">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="6-3">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody id="sunday" name="sunday">
-                    <tr>
-                        <th colspan="3">Sunday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <small>熱量:0大卡</small></th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="7-1">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="7-2">
-                        </td>
-                        <td style="padding: 0" class="dropzone">
-                            <img src="{% static 'images/empty.png' %}">
-                            <input type="hidden" value="" name="7-3">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <th colspan="3">標題 &nbsp;:&nbsp;&nbsp;<input type="text" class="btn btu-primary" name="title" ></th>
-                    </tr>
-                    <tr>
-                        <th colspan="3"><input id="btn1" type="submit" class="btn btu-primary" value="儲存"></th>
-                    </tr>
-                </tbody>
-            </table>
-            </form>
-
-        </div>
-
     </div>
 </div>
 
@@ -239,7 +220,7 @@
     var a = 300;
     $(".draggable").draggable({
         // brings the item back to its place when dragging is over
-		revert:true, 
+        revert:true, 
         
         // let the dragged item always on the top
         stack: ".draggable"
@@ -251,7 +232,7 @@
         drop: function(event, ui) {
             
             var basket = $(this);
-			var move = ui.draggable;
+            var move = ui.draggable;
             
             addBasket(basket,move)
         }   
