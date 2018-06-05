@@ -4,49 +4,49 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-
-
-<div class="container" style="background-color: orange; font-family: 微軟正黑體 ">
-    <div class="card card-register mx-auto mt-2">
+<div class="container" style="background-color: orange;">
+        <div class="card card-register mx-auto mt-2">
         <!-- <div class="card-header">Register an Account</div> -->
-    <div class="card-body" >      
-
-<h4 style="text-align:center ;font-family: 微軟正黑體">會員資料</h4>
-
-<a href="{% url 'member:create' %}" class="btn btn-secondary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> 會員新增</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>姓名</th>
-            <th>電子郵件</th>
-            <th>生日</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-   
-        <tr>
-            {% for member in members %}
-            <td>{{member.id}}</td>
-            <td>{{member.username}}</td>
-            <td>{{member.useremail}}</td>
-            <td>{{member.userbirth}}</td>
-           
-            <td><a href="{% url 'member:update' member.id %}" ><i class="fas fa-pencil-alt">修改</i></a></td>
-
-            <td><a href="{% url 'member:delete' member.id %}"><i class="far fa-trash-alt">刪除</i></a></td></td>
-
-               
-               
-        </tr>
-        {% endfor %}
-    </tbody>
-
+        <div class="card-body" >
     
-</table>
+<h4 style="text-align:center ; font-family: 微軟正黑體">修改會員資料</h4>
+<br>
 
+ 
+
+<form method="POST" style="font-family: 微軟正黑體" >
+{% csrf_token %} 
+
+<div class="form-group row">
+    <label for="useremail" class="col-sm-3 col-form-label">
+        <i class="far fa-envelope col-md-4" style="margin-left: 30%"></i>E-mail</label>
+    <div class="col-sm-6">
+        <input type="email" class="form-control" name="useremail" id="useremail" placeholder="User Email" required>
+    </div>
+</div>
+
+
+
+<div class="form-group row">
+        <label for="password" class="col-sm-3 col-form-label">
+            <i class="fas fa-unlock-alt col-md-4" style="margin-left: 30%"></i>密碼</label>
+        <div class="col-sm-6">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+        </div>
+</div>
+    
+
+
+<div class="form-group row">
+        <div class="offset-md-6">
+        <button type="submit" class="btn btn-warning">確認</button>
+            
 </div>
 </div>
 
+</form>
+
+</div>
+</div>
+</div>
 {% endblock %}
