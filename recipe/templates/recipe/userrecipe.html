@@ -13,9 +13,9 @@
             <tr class="row">
                 <th class="col-2">圖片</th>
                 <th class="col-2">食譜名稱</th>
-                <th class="col-2">簡介</th>
-                <th class="col-2">葷素</th>
-                <th class="col-2">熱量</th>
+                <th class="col-4">簡介</th>
+                <th class="col-1">葷素</th>
+                <th class="col-1">熱量</th>
                 <th class="col-2">管理</th>
             </tr>
         </thead>
@@ -28,9 +28,9 @@
                 
                 </td> 
                 <td class="col-2">{{recipe.recname}}</td>
-                <td class="col-2">{{recipe.recdesc}}</td>
-                <td class="col-2">{{recipe.recvegan}}</td>
-                <td class="col-2">{{recipe.reccal}}</td>
+                <td class="col-4">{{recipe.recdesc}}</td>
+                <td class="col-1">{{recipe.recvegan}}</td>
+                <td class="col-1">{{recipe.reccal}}</td>
                 <td class="col-2">
                         <a href="{% url 'recipe:update' recipe.recid %}" class="btn btn-info mr-2">修改</a>
                         <a href="{% url 'recipe:delete' recipe.recid %}" class="btn btn-danger">刪除</a></td>

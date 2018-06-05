@@ -32,7 +32,7 @@ def create(request):
         # 會員資料寫進資料庫
         Member.objects.create(username=username,password=password,userphone=userphone,useremail=useremail,userbirth=userbirth,useraddress=useraddress,usergender=usergender)
         
-        return redirect('/memeber/login')
+        return redirect('/member/login')
 
     # title = "會員新增" 
     return render(request,'member/create.html',locals())
