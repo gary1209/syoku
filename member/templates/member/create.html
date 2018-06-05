@@ -25,15 +25,28 @@
     <div class="form-group row" >
         
         <label for="username" class="col-sm-3 col-form-label">
-            <i class="far fa-user col-md-4"></i>姓名</label>
+            <i class="far fa-user col-md-4" style="color:orange ; margin-left:30%;"></i>姓名</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" name="username" id="username" placeholder="User Name" required>
         </div>
     </div>
 
+    
+    <div class="form-group row">
+        <label for="useremail" class="col-sm-3 col-form-label">
+            <i class="far fa-envelope col-md-3" style="color:orange ; margin-left:30%;"></i>E-mail*(帳號)</label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" name="useremail" id="useremail" placeholder="User Email" required>
+            <h6 id="ans" style="font-family: 微軟正黑體" ></h6>
+        </div>
+    </div>
+
+
+
+
     <div class="form-group row">
         <label for="password" class="col-sm-3 col-form-label">
-            <i class="fas fa-unlock-alt col-md-4"></i>密碼</label>
+            <i class="fas fa-unlock-alt col-md-4" style="color:orange ; margin-left:30%;"></i>密碼</label>
         <div class="col-sm-6">
             <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
         </div>
@@ -41,7 +54,7 @@
 
     <div class="form-group row">
         <label for="usergender" class="col-sm-3 col-form-label">
-            <i class="fas fa-transgender col-md-4"></i>性別</label>
+            <i class="fas fa-transgender col-md-4" style="color:orange; margin-left:30%; " ></i>性別</label>
         <div class="col-sm-6" >
            
             <input type="radio" name="usergender" value=Male required> Male<br>
@@ -53,24 +66,17 @@
 
     <div class="form-group row">
         <label for="userphone" class="col-sm-3 col-form-label">
-            <i class="fas fa-mobile-alt col-md-4"></i>電話</label>
+            <i class="fas fa-mobile-alt col-md-4" style="color:orange ; margin-left:30%;"></i>電話</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" name="userphone" id="userphone" placeholder="User Phone" required>
         </div>
     </div>
 
 
-    <div class="form-group row">
-        <label for="useremail" class="col-sm-3 col-form-label">
-            <i class="far fa-envelope col-md-4"></i>電子郵件</label>
-        <div class="col-sm-6">
-            <input type="email" class="form-control" name="useremail" id="useremail" placeholder="User Email" required>
-        </div>
-    </div>
 
     <div class="form-group row">
         <label for="userbirth" class="col-sm-3 col-form-label">
-            <i class="fas fa-birthday-cake col-md-4"></i>生日</label>
+            <i class="fas fa-birthday-cake col-md-4" style="color:orange ; margin-left:30%;"></i>生日</label>
         <div class="col-sm-6">
             <input type="date" class="form-control" name="userbirth" id="userbirth" placeholder="User Birthday" required>
         </div>
@@ -79,7 +85,7 @@
 
     <div class="form-group row">
         <label for="useraddress" class="col-sm-3 col-form-label">
-            <i class="fas fa-home col-md-4"></i>地址</label>
+            <i class="fas fa-home col-md-4" style="color:orange ; margin-left:30%;"></i>地址</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" name="useraddress" id="useraddress" placeholder="User Address" required>
         </div>
@@ -87,7 +93,7 @@
 
     <div class="form-group row">
         <div class="offset-md-5">
-            <button type="submit" class="btn btn-warning">加入會員</button>
+            <button id="sub" type="submit" class="btn btn-warning" >加入會員</button>
             
         </div>
     </div>
@@ -95,6 +101,29 @@
 </div>
 </div>
 </div>
+<script>
+
+      $(document).ready(function () {
+          $("#useremail").blur(function(){
+              // 保留List為 一個陣列
+              lll = ({{ List|safe }});  
+              va = String($(this).val())
+
+            //    console.log(lll)
+            //    console.log(va)
+            //    console.log($.inArray(va, lll))
+               if ($.inArray(va, lll)>=0){
+                   $("#ans").text('帳號重複')
+                   $("#sub").prop('disabled',true)    
+               }
+               else{
+                $("#ans").text('帳號可以使用')
+                $("#sub").prop('disabled',false)  
+               }
+          })   
+        })
+
+</script>
 </div>
 
 </form>
