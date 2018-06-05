@@ -30,6 +30,8 @@
           {% if request.COOKIES.uid %}
           <!-- <span>您好 {{request.COOKIES.uid}} &nbsp;</span> -->
           <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="{% url 'gary:history' %}" class="btn btn-primary my-2 my-sm-0">歷史菜單</a>
           {% else %}
 
 
