@@ -213,10 +213,22 @@
         <div class="col-12 col-md-6">
             <div class="row">
             {% for recipe in recipes %}
-                <div class="card draggable col-md-6" style="border: 3px solid black;">
-                    <a href="{% url 'recipe:showrecipe' recipe.recid %}">
-                    <img class="card-img-top" src="/media/{{recipe.reccover}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
-                    </a>
+                <div class="card col-md-6" style="border: 3px solid black;">
+                    <div class="draggable">
+                        <a href="{% url 'recipe:showrecipe' recipe.recid %}">
+                        <img class="card-img-top" src="/media/{{recipe.reccover}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                        </a>
+                        <div style="display: none">
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-weight: 900">[食譜]{{recipe.recname}}</h4>
+                                <p class="card-text">{{recipe.recdesc}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">葷素: {{recipe.recvegan}}</li>
+                                <li name="foodcal" class="list-group-item">熱量: {{recipe.reccal}}</li>
+                            </ul>
+                        </div>                        
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title" style="font-weight: 900">[食譜]{{recipe.recname}}</h4>
                         <p class="card-text">{{recipe.recdesc}}</p>
@@ -232,8 +244,21 @@
         <div class="col-12 col-md-6">
             <div class="row">
             {% for storemenu in storemenu %}
-                <div class="card draggable col-md-6" style="border: 3px solid black;">
-                    <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                <div class="card col-md-6" style="border: 3px solid black;">
+                    <div class="draggable">
+                        <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                        <div style="display: none">
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
+                                <p class="card-text">{{storemenu.cintroduction}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">類型: {{storemenu.ctype}}</li>
+                                <li name="foodcal" class="list-group-item">熱量: {{storemenu.ccal}}</li>
+                                <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
                         <p class="card-text">{{storemenu.cintroduction}}</p>
