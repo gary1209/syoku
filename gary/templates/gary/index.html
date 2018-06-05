@@ -6,7 +6,7 @@
         table-layout: fixed;
         word-break: break-all;
         word-wrap: break-word;
-        border: 3px black solid
+        border: 3px black solid;
     }
 
     th {
@@ -23,7 +23,20 @@
     img {
         width: 100%;
     }
-    
+    .fix-div{
+        margin: 0 auto;
+        position: fixed;
+        width: 1137px;
+        left: 0; 
+        right: 0;
+        z-index: 100;
+    }
+    .toggle {
+        height: 50px;
+        line-height: 50px;
+        border-top: 2px solid #CC9;
+        background: #3FF;
+    }
     /* .active{
         opacity: .4;
     } */
@@ -32,11 +45,11 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <form method="POST">
+        <div class="col-12" style="padding: 0">
+            <form method="POST" id = "fix1" class="">
                 {% csrf_token %}
                 <table class="table" style="background-color: #f9ebc0;color:black;text-align: center">
-                    <thead style="background-color: #1eb4ab;color:white">
+                    <thead style="background-color: #1eb4ab;color:white;">
                         <tr>
                             <th>食譜</th>
                             <th>Monday</th>
@@ -238,13 +251,16 @@
 {% block scripts %}
 <script src="{% static 'jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
 <script>
-    var a = 300;
+    var a = 100;
     $(".draggable").draggable({
         // brings the item back to its place when dragging is over
         revert:true, 
         
         // let the dragged item always on the top
-        stack: ".draggable"
+        // stack: ".draggable"
+
+        start: function(event, ui) { $(this).css("z-index", a=105); },
+        stop : function(event, ui) { $(this).css("z-index", a=95); },
         
         
     });   
@@ -310,5 +326,31 @@
         basket.find('h5').text(cal_text)
 
     }  
+
+    $.fn.fixedDiv = function(actCls, i){
+            var that = $(this),
+                h = that.height(),
+                topVal = (h + 2) * i,
+                offsetTop = that.offset().top,
+                scrollTop;
+            function fix(){
+                scrollTop = $(document).scrollTop();   
+                // console.log("offsetTop: " + offsetTop);
+                // console.log("scroll: " + screenTop);
+                if (scrollTop > (offsetTop - topVal)) {
+                    that.addClass(actCls);
+                    that.css("top", topVal + "px");                
+                } else {
+                    that.removeClass(actCls);
+                }
+            }
+            fix();
+            $(window).scroll(fix);
+        }
+        $('#fix1').fixedDiv('fix-div', 0);
+        $('#fix2').fixedDiv('fix-div', 1);
+        $('#fix3').fixedDiv('fix-div', 2);
+        $('#fix4').fixedDiv('fix-div', 3);
+        $('#fix5').fixedDiv('fix-div', 4);
 </script>
 {% endblock %}
