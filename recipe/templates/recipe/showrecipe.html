@@ -3,7 +3,9 @@
 <!-- {% load static %} -->
 <div class="container">
     <div class="card card-register mx-auto mt-5">
-        <div class="card-header"></div>
+        <div class="card-header">
+                <a href="{% url 'recipe:index' %}" class="btn btn-primary col-1 ml-3"><i class="fa fa-plus-circle" aria-hidden="true"></i>返回食譜</a>
+        </div>
         <div class="card-body">
         <form method="POST" enctype="multipart/form-data" action="{% url 'recipe:update' recipe.recid %}" name="reciptform" id="reciptform">
 
@@ -79,7 +81,8 @@
         </div>
     </div>
  </div>
-   
+ {% endblock %}
+ {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
       $(document).ready(function() {

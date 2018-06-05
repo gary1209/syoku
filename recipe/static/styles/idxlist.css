@@ -1,16 +1,5 @@
 a{color: #444; text-decoration: none;}
-/* 
-ul{
-  width: 990px;
-  margin:0 auto;
-}
-ul,ul li{
-  display: inline-block;
-  list-style-type: none;
-  float: left;
-  margin-right:5px;
-  margin-bottom: 5px;
-}*/
+
 .splitter>li>b{float: left;}
 .splitter>li>ul{
   border: solid 1px #ccc;

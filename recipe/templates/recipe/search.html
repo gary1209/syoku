@@ -7,11 +7,19 @@
         <div class="card-header">
 
             <div class="row">
-              <a href="{% url 'recipe:userrecipe' %}" class="btn btn-primary col-1"><i class="fa fa-plus-circle" aria-hidden="true"></i>我的食譜</a>
+  <div class="float-left col-4">
+            <a href="{% url 'recipe:index' %}" class="btn btn-primary col-4 ml-3"><i class="fa fa-plus-circle" aria-hidden="true"></i>返回食譜</a>
+            <a href="{% url 'recipe:userrecipe' %}" class="btn btn-primary col-4 ml-3"><i class="fa fa-plus-circle" 
+            aria-hidden="true"></i>我的食譜</a>
+           </div>
+
         
-              <!-- <form name="myform" method="GET" action="{% url 'recipe:search' %}"> 
-                    <input type="text" name="search" placeholder="Search" />
-                    </form> -->
+            <label class="form-inline">搜尋：{{srhkey}}</label>
+              <form class=" ml-3"name="myform" method="GET" action="{% url 'recipe:search' %}"> 
+                    <input type="text" name="search" placeholder="Search" /><button type = "submit" class="btn btn-outline btn-success m-2">搜尋</button>
+                    </form>
+                    
+      
                     </div>
         </div>
         <div class="card-body">

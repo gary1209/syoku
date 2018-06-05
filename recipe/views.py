@@ -6,34 +6,30 @@ import datetime
 import json
 import random
 import string
+from django.db.models import Q
 
 # Create your views here.
 
 def index(request):
 
-
     recipes=Recipe.objects.all()
-    
-
     return render(request,'recipe/index.html',locals())
 
 def search(request): 
-    print(11111)
     if request.method == 'GET':      
         srhkey =  request.GET.get('search')     
         print(srhkey)   
         try:
-            recipes = Recipe.objects.filter(recname=srhkey)  
+            recipes = Recipe.objects.filter(Q(recfood__contains=srhkey) | Q(recname__contains=srhkey)) 
             print("try")
+            print(recipes)  
         except: 
             print("except")
             recipes=Recipe.objects.all()
+            return render(request,'recipe/index.html',locals())
+        else:
+            print("else")
             return render(request,'recipe/search.html',locals())
-        
-    else:
-        print("else")
-        recipes=Recipe.objects.all()
-        return render(request,'recipe/search.html',locals())
 
 def userrecipe(request):
     
