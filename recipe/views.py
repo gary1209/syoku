@@ -17,6 +17,24 @@ def index(request):
 
     return render(request,'recipe/index.html',locals())
 
+def search(request): 
+    print(11111)
+    if request.method == 'GET':      
+        srhkey =  request.GET.get('search')     
+        print(srhkey)   
+        try:
+            recipes = Recipe.objects.filter(recname=srhkey)  
+            print("try")
+        except: 
+            print("except")
+            recipes=Recipe.objects.all()
+            return render(request,'recipe/search.html',locals())
+        
+    else:
+        print("else")
+        recipes=Recipe.objects.all()
+        return render(request,'recipe/search.html',locals())
+
 def userrecipe(request):
     
     if 'uid' in request.COOKIES:
@@ -53,7 +71,7 @@ def create(request):
 
             myfile = request.FILES['recCover']
             fs = FileSystemStorage()
-            filename = userId[1:4]
+            filename = userId[0:3]
             rd = str(random.randint(0,9999))
             recCoverName="rec_"+filename+"_"+recName+rd+".jpg"
             fs.save(recCoverName,myfile)
@@ -107,7 +125,7 @@ def update(request,id):
             else:
                 myfile = request.FILES['recCover']        
                 fs = FileSystemStorage()
-                filename = userId[1:4]
+                filename = userId[0:3]
                 rd = str(random.randint(0,9999))
                 recCoverName="rec_"+filename+"_"+recName+rd+".jpg"
                 fs.save(recCoverName,myfile)
@@ -134,7 +152,7 @@ def update(request,id):
 
             recipe.save()
             return redirect('/recipe/userrecipe')
-            print("2222")
+            
         return render(request,'recipe/update.html',locals())
 
     else:
