@@ -1,49 +1,83 @@
-{% extends 'base_c.html' %} {% block content %}
+{% extends 'base_c.html' %} {% block content %} {% load static %}
 <div class="container" style="font-family: 'SimSun'">
-<div class="card card-register mx-auto mt-5">
-  <div class="card-header">
-    {{title}}
-    <a href="{% url 'storemenu:create' %}" class="btn" style="background-color: #e6a756; font-weight: 500;color: black">新增</a>
-  </div>
-  <div class="row m-3" id="tooo">
-    {% for storemenu in storemenu %}
-    <div class="col-6 col-md-3 mb-3">
-      <div class="card " style="border: 3px solid black;">
-        <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
-        <div class="card-body">
-          <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
-          <p class="card-text">{{storemenu.cintroduction}}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">類型: {{storemenu.ctype}}</li>
-          <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
-          <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
-        </ul>
+  <div class="card card-register mx-auto mt-5">
+    <div class="card-header pb-0">
+      {{title}}
+      <a href="{% url 'storemenu:create' %}" class="btn" style="background-color: #e6a756; font-weight: 500;color: black">新增</a>
+      <ul class="splitter row" style="display: inline ">
+        <li style="list-style: none;">顯示項目:
+          <ul>
+            <li class="segment-0 selected-0 col" style="display: inline ; list-style-type: none">
+              <a href="#" data-value="all">全部</a>
+            </li>
+            <li class="segment-1 col" style="display: inline ; list-style-type: none ;">
+              <a href="#" data-value="台式料理">台式料理</a>
+            </li>
+            <li class="segment-2 col" style="display: inline ; list-style-type: none">
+              <a href="#" data-value="日式料理">日式料理</a>
+            </li>
+            <li class="segment-3 col" style="display: inline ; list-style-type: none">
+              <a href="#" data-value="美式料理">美式料理</a>
+            </li>
+            <li class="segment-4 col" style="display: inline ; list-style-type: none">
+                <a href="#" data-value="義式料理">義式料理</a>
+              </li>
+              <li class="segment-5 col" style="display: inline ; list-style-type: none">
+                  <a href="#" data-value="韓式料理">韓式料理</a>
+                </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
 
 
+    <ul id="list" class="row m-3 p-0">
+      {% for storemenu in storemenu %}
+      <li data-id="id-{{storemenu.id}}" class="{{storemenu.ctype}} col-6 col-md-3 mb-3" style="list-style: none;">
+    
+
+          <div class="card " style="border: 3px solid black;">
+            <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+            <div class="card-body">
+              <h4 class="card-title" style="font-weight: 900">{{storemenu.cname}}</h4>
+              <p class="card-text">{{storemenu.cintroduction}}</p>
+            </div>
+            <ol class="list-group list-group-flush" >
+              <li class="list-group-item">類型: {{storemenu.ctype}}</li>
+              <li class="list-group-item">熱量: {{storemenu.ccal}}</li>
+              <li class="list-group-item">價錢: {{storemenu.cprice}}</li>
+            </ol>
+          </div>
+
+      </li> {% endfor %}
+    </ul>
+    
+    
+
+
+    <div class="modal fade" id="exampleModal" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
+        <img sid="imgall" id="imgalll" src="" style="width: 1000px;">
       </div>
     </div>
-    {% endfor %}
   </div>
-  <div class="card-body">
-  </div>
-  <div class="modal fade" id="exampleModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
-      <img sid="imgall" id="imgalll" src="" style="width: 1000px;">
-    </div>
-  </div>
-</div>
 
-<script>
-  $(document).ready(function () {
-    $('#tooo').on('click', '#imgall', function () {
-      img = $(this).attr('src')
-      // alert(img)
-      $("#imgalll").attr('src', img)
+  <script>
+    $(document).ready(function () {
+      $('#list').on('click', '#imgall', function () {
+        img = $(this).attr('src')
+        // alert(img)
+        $("#imgalll").attr('src', img)
 
+      })
     })
-  })
-</script>
+  </script>
 
 </div>
-{% endblock %}
+{% endblock %} {% block scripts %}
+<link rel='stylesheet' href="/static/styles/qazwsx.css">  
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="{% static 'scripts/scriptsx/jquery.quicksand.js' %}"></script>
+<script src="{% static 'scripts/scriptsx/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'scripts/scriptsx/jquery-animate-css-rotate-scale.js' %}"></script>
+<script src="{% static 'scripts/scriptsx/qstand.js' %}"></script> {% endblock %}
