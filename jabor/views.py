@@ -17,14 +17,19 @@ def index(request):
 
 
 def update(request):
-    
-    if 'Company_email' in request.COOKIES: 
 
-        if request.method == 'POST' and request.FILES["Company_photo"]:
- 
-            myFile = request.FILES["Company_photo"]
-            fs = FileSystemStorage()
-            fs.save(myFile.name, myFile)
+    if 'Company_email' in request.COOKIES:
+
+        if request.method == 'POST':
+            try:
+                request.FILES["Company_photo"]
+            except:
+                pass
+            else:
+                myfile = request.FILES['Company_photo']
+                fs = FileSystemStorage()
+                fs.save(myfile.name,myfile)
+                Company_photo = (myfile.name)      
 
             Company_name = request.POST["Company_name"]
             Company_email = request.POST["Company_email"]
@@ -32,18 +37,22 @@ def update(request):
             Company_address = request.POST["Company_address"]
             Company_open_time = request.POST["Company_open_time"]
             Company_close_time = request.POST["Company_close_time"]
-            Company_photo = myFile.name
 
+            Company_data.objects.filter(Company_email=Company_email).update(Company_name=Company_name, Company_email=Company_email,Company_photo=Company_photo,
+                                                                            Company_tele=Company_tele, Company_address=Company_address, Company_open_time=Company_open_time, Company_close_time=Company_close_time)
+
+            return redirect('/')
 
         Company_email = request.COOKIES['Company_email']
-        companysA = Company_data.objects.filter(Company_email=Company_email).values('id','Company_name','Company_email','Company_photo','Company_tele','Company_address','Company_open_time','Company_close_time')  # 取得cookie的資料庫id為多少3 ,
+        companysA = Company_data.objects.filter(Company_email=Company_email).values(
+            'id', 'Company_name', 'Company_email', 'Company_photo', 'Company_tele', 'Company_address', 'Company_open_time', 'Company_close_time')  # 取得cookie的資料庫id為多少3 ,
         # print(companysA)
+
         companysB = companysA[0]
-        print(companysB)
+        # print(companysB)
         return render(request, 'jabor/update.html', locals())
     else:
-        return HttpResponse ("<script>alert('請先登入');location.href='/jabor/login'</script>")
-
+        return HttpResponse("<script>alert('請先登入');location.href='/jabor/login'</script>")
 
 
 def register(request):
@@ -92,11 +101,15 @@ def login(request):
                 for companys in companys_D:
                     if companys.Company_email == Company_email:
                         print(companys)
-                        response = HttpResponse("<script>alert('登入成功');location.href='/storemenu'</script>")
+
+                        response = HttpResponse("<script>alert('登入成功');location.href='/storemenu/userindex'</script>")
 
                         response.set_cookie("Company_email", company_correct[0]['Company_email'])
                                               
 
+
+                        response.set_cookie(
+                            "Company_email", company_correct[0]['Company_email'])
 
                         return response
 
@@ -133,24 +146,24 @@ def logout(request):
 
 def forget_p(request):
 
-
     if request.method == 'POST':
         Company_email = request.POST["Company_email"]
         companys = Company_data.objects.all()
-        companysA = Company_data.objects.filter(Company_email=Company_email).values('Company_email')  # 取得cookie的資料庫id為多少3 ,
+        companysA = Company_data.objects.filter(Company_email=Company_email).values(
+            'Company_email')  # 取得cookie的資料庫id為多少3 ,
         # print(companysA)
-        companysB = Company_data.objects.filter(Company_email=Company_email).values('Company_password')
+        companysB = Company_data.objects.filter(
+            Company_email=Company_email).values('Company_password')
         company_e = companysA[0]['Company_email']
         company_p = companysB[0]['Company_password']
-        # print(company_p)       
-
+        # print(company_p)
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
-        server.login("ghostyydd@gmail.com", "davidbitch")
-    
+        server.login("syoku03company@gmail.com", "ssyyookkuu03")
+
         msg = company_p
-        server.sendmail("ghostyydd@gmail.com", company_e , msg)
+        server.sendmail("syoku03company@gmail.com", company_e, msg)
         server.quit()
         return redirect('/jabor/login')
 

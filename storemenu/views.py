@@ -3,11 +3,28 @@ from django.core.files.storage import FileSystemStorage
 from .models import Storemenu
 from django.http import HttpResponse
 from jabor.models import Company_data
+from django.db.models import Q
 
 def index(request):
     title = "菜單管理"
     storemenu = Storemenu.objects.all()
     return render(request,'storemenu/index.html',locals())
+
+def search(request): 
+    if request.method == 'GET':      
+        key =  request.GET.get('search')     
+        print(key)   
+        try:
+            storemenu = Storemenu.objects.filter(Q(cname__contains=key) | Q(cintroduction__contains=key)) 
+            print("try")
+            print(storemenu)  
+        except: 
+            print("except")
+            storemenu=Storemenu.objects.all()
+            return render(request,'storemenu/index.html',locals())
+        else:
+            print("else")
+            return render(request,'storemenu/search.html',locals())
 
 def create(request):
     if 'Company_email' in request.COOKIES:

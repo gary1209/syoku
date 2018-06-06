@@ -1,31 +1,71 @@
 {% extends 'base.html'%}
 {% block content %}
+{% load static %}
 
 <div class="container ">
     <div class="card card-register mx-auto mt-5">
-        <div class="card-header"></div>
-        <div class="card-body">
-        <a href="{% url 'recipe:userrecipe' %}" class="btn btn-primary mb-3"><i class="fa fa-plus-circle" aria-hidden="true"></i>我的食譜</a>
-        <div class="row m-3">
-        {% for recipe in recipes %}
-        <div class="col-6 col-md-3 md-3 mb-3">
-            <div class="card" style="border: 3px solid black;">
-                <a href="{% url 'recipe:showrecipe' recipe.recid %}">
-                    <img class="card-img-top"src="/media/{{recipe.reccover}}" class="img-thumbnail" style="width:900"></a>
-            <div class="card-body">
-                <h5 class="card-title" style="font-weight:900">{{recipe.recname}}</h5>
-                <p class="card-text">{{recipe.recdesc}}</p>
+        <div class="card-header">
+            <div class="row">
+                <div class="float-left col-4">
+                    <a href="{% url 'recipe:userrecipe' %}" class="btn btn-primary col-4 ml-3"><i class="fa fa-plus-circle" 
+                            aria-hidden="true"></i>我的食譜</a>
+                </div>
+                <label class="form-inline">搜尋：{{srhkey}}</label>
+                <form class=" ml-3"name="myform" method="GET" action="{% url 'recipe:search' %}"> 
+                    <input type="text" name="search" placeholder="Search" />
+                    <button type = "submit" class="btn btn-outline btn-success m-2">搜尋</button>
+                </form>
             </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{recipe.recvegan}}</li>
-                    <li class="list-group-item">熱量：{{recipe.reccal}}大卡</li>
-                    
+        </div>
+
+        <div class="card-body"> 
+            <ul class="splitter row" style="display: inline ">
+                <li style="list-style: none;">分類
+                <ul>
+                    <li class="segment-0 selected-0 col" style="display: inline ; list-style-type: none">
+                        <a href="#" data-value="all">全部</a>
+                    </li>
+                    <li class="segment-1 col" style="display: inline ; list-style-type: none ;">
+                        <a href="#" data-value="葷食">葷食</a>
+                    </li>
+                    <li class="segment-2 col" style="display: inline ; list-style-type: none">
+                        <a href="#" data-value="蛋奶素">蛋奶素</a>
+                    </li>
+                    <li class="segment-3 col" style="display: inline ; list-style-type: none">
+                        <a href="#" data-value="素食">素食</a>
+                    </li>
                 </ul>
-            </div>
-        </div>
-        {% endfor %}
-        </div>
+                </li>
+            </ul>
+
+            <ul id = "list" class="row m-3">
+            {% for recipe in recipes %}
+                <li data-id="id-{{recipe.recid}}" class="{{recipe.recvegan}} col-6 col-md-3 mb-3" style="list-style: none;">
+                    <div class="card" style="border: 3px solid black;">
+                        <a href="{% url 'recipe:showrecipe' recipe.recid %}">
+                            <img class="card-img-top"src="/media/{{recipe.reccover}}" class="img-thumbnail" style="width:50;height:50;"></a>
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-weight:900">{{recipe.recname}}</h5>
+                            <p class="card-text">{{recipe.recdesc}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{recipe.recvegan}}</li>
+                            <li class="list-group-item">熱量：{{recipe.reccal}}大卡</li>
+                        </ul>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
         </div>
     </div>
 </div>
-    {% endblock %}
+{% endblock %}
+
+{% block scripts %}
+<link rel='stylesheet' href="/static/styles/idxlist.css"> 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="{% static 'scripts/scriptsx/jquery.quicksand.js' %}"></script>
+<script src="{% static 'scripts/scriptsx/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'scripts/scriptsx/jquery-animate-css-rotate-scale.js' %}"></script>
+<script src="{% static 'scripts/scriptsx/qstand.js' %}"></script> 
+{% endblock %}
