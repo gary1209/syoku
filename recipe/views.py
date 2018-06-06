@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.core.files.storage import FileSystemStorage
 from .models import Recipe
+from member.models import Member
 from django.http import HttpResponse
 import datetime
 import json
@@ -11,43 +12,47 @@ from django.db.models import Q
 # Create your views here.
 
 def index(request):
-
+    #取出recipe資料庫所有資料
     recipes=Recipe.objects.all()
     return render(request,'recipe/index.html',locals())
 
 def search(request): 
+    #判斷搜取得尋關鍵字
     if request.method == 'GET':      
-        srhkey =  request.GET.get('search')     
-        print(srhkey)   
+        srhkey =  request.GET.get('search')       
+         
         try:
             recipes = Recipe.objects.filter(Q(recfood__contains=srhkey) | Q(recname__contains=srhkey)) 
-            print("try")
-            print(recipes)  
         except: 
-            print("except")
             recipes=Recipe.objects.all()
             return render(request,'recipe/index.html',locals())
         else:
-            print("else")
+            
+            # if(recipes == ""):
+            #     response = HttpResponse("<script>alert('查無資料');location.href='/recipe/index'</script>")
+            #     return response
             return render(request,'recipe/search.html',locals())
 
 def userrecipe(request):
     
     if 'uid' in request.COOKIES:
         user = request.COOKIES['uid']
-
         recipes=Recipe.objects.filter(userid=user)
     else:
-        return redirect('/member/login') 
+        response = HttpResponse("<script>alert('請先登入');location.href='/member/login'</script>")
+        return response
     return render(request,'recipe/userrecipe.html',locals())
 
 def showrecipe(request,id):
 
 
-    #todo 根據會員編號取得會員資料傳給update.html
+   
     recipe=Recipe.objects.get(recid=int(id))
     fodlist = json.loads(recipe.recfood)
     stplist = json.loads(recipe.recstep)
+    print(recipe.userid)
+    member=Member.objects.get(useremail=recipe.userid)
+    print(member.useremail)
 
 
     return render(request,'recipe/showrecipe.html',locals())
@@ -87,7 +92,8 @@ def create(request):
         return render(request,'recipe/create.html',locals())
     
     else:
-        return redirect('/member/login')
+        response = HttpResponse("<script>alert('請先登入');location.href='/member/login'</script>")
+        return response
 
 def update(request,id):
 
@@ -147,7 +153,8 @@ def update(request,id):
         return render(request,'recipe/update.html',locals())
 
     else:
-        return redirect('/member/login')
+        response = HttpResponse("<script>alert('請先登入');location.href='/member/login'</script>")
+        return response
     
     
 
@@ -163,4 +170,5 @@ def delete(request,id):
         return redirect('/recipe/userrecipe')
     
     else:
-        return redirect('/member/login')
+        response = HttpResponse("<script>alert('請先登入');location.href='/member/login'</script>")
+        return response

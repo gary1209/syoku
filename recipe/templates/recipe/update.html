@@ -1,48 +1,43 @@
 {% extends 'base.html' %}
 {% block content %} 
-<!-- {% load static %} -->
+{% load static %}
 <div class="container">
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">更新食譜</div>
         <div class="card-body">
-        <form method="POST" enctype="multipart/form-data" action="{% url 'recipe:update' recipe.recid %}" name="reciptform" id="reciptform">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'recipe:update' recipe.recid %}" name="reciptform" id="reciptform">
 
-        {% csrf_token %}   
-        <div class="form-group row">
-            <div class="float-left col-sm-5 " id="namepic">          
-                <div class="form-group row ">
-                    <label for="recName" class="col-sm-2.5 ">食譜名稱：</label>
-                    <div class="col-sm-8">
-                        <input type="text" value="{{recipe.recname}}" class="form-control" name="recName" id="recName" required placeholder="請輸入食譜名稱">
+            {% csrf_token %}   
+            <div class="form-group row">
+                <div class="float-left col-sm-5 " id="namepic">          
+                    <div class="form-group row ">
+                        <label for="recName" class="col-sm-2.5 ">食譜名稱：</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="{{recipe.recname}}" class="form-control" name="recName" id="recName" required placeholder="請輸入食譜名稱">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row " >
-                    <div class="col-sm-10">
-                        <!-- <label for="recCover" class="col-sm-10 "> -->
-                            
+                    <div class="form-group row " >
+                        <div class="col-sm-10">
                             <img src="/media/{{recipe.reccover}}"  class="form-control" name="imgrecipcover" id="imgrecipename" placeholder="Recipt Name" style="width:250px">
-                            <input type = "file" name="recCover" onchange="openFile(event)" required>
-                        <!-- </label> -->
+                            <input type = "file" name="recCover"  onchange="openFile(event)" required>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class"float-right col-sm-7">
-
-                <div class="form-group row ">
-                    <label for="recDesc" class="col-sm-2 col-form-label">簡介：</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control"  maxlength="200" rows="3" cols="50" name="recDesc" id="recDesc" required placeholder="請輸入描述(最多200字)" style="resize: none">{{recipe.recdesc}}</textarea>
+                <div class"float-right col-sm-7">
+                    <div class="form-group row ">
+                        <label for="recDesc" class="col-sm-2 col-form-label">簡介：</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control"  maxlength="200" rows="3" cols="50" name="recDesc" id="recDesc" required placeholder="請輸入描述(最多200字)" style="resize: none">{{recipe.recdesc}}</textarea>
+                        </div>
                     </div>
-                </div>
 
                 <div class="form-group row ">
                     <label for="recTime" class="col-sm-4  ">料理時間(分鐘)：</label>
                     <div class="col-sm-4">
                         <select class="select optional form-control" name="recTime" id="recTime">
                             <option value="0">請選擇</option>
-    
                             {% for ckt in cooktimelist %}
                             {% if recipe.rectime == ckt %}
                                 <option value={{ckt}} selected>{{ckt}}</option>
@@ -50,7 +45,6 @@
                                 <option value={{ckt}} >{{ckt}}</option>
                             {% endif %} 
                             {% endfor %}
-
                         </select>
                     </div>
                 </div>
@@ -59,7 +53,6 @@
                     <label for="recPortion" class="col-sm-4  ">份量(人份)：</label>
                     <div class="col-sm-4">
                         <select class="select optional form-control" name="recPortion" id="recPortion">
-
                             <option value>請選擇</option>                         
                             {% for prt in portionlist %}
                             {% if recipe.recportion == prt %}
@@ -68,7 +61,6 @@
                                 <option value={{prt}} >{{prt}}</option>
                             {% endif %}
                             {% endfor %}
-
                         </select>
                     </div>
                 </div>
@@ -90,113 +82,52 @@
                             <input  type="radio" name="recVegan" value={{veg}} >{{veg}}</option>
                         {% endif %}
                         {% endfor %}
-                        
                     </div>
                 </div>
             </div>
-</div> 
-<div>
-        <h4 class="panel-title m-2">食材</h4>
+        </div> 
+        <div>
+            <h4 class="panel-title m-2">食材</h4>
         </div>
-            <div class=" form-group row m-2">
-                  
-                <div id="foodlist" class="form-inline  " >
-                    {% for fod in fodlist %}
-                    <div class="form-inline  " name="foodbar">
-                        <input type="text" class="form-control    col-sm-5 m-1"  placeholder="食材" name="food"   value="{{fod.name}}" required>
-                        <input type="text" class="form-control    col-sm-3 m-1" placeholder="份量" name="fQty"  value="{{fod.qty}}" required>  
-                        <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>
-                    </div>   
+        <div class=" form-group row m-2">   
+            <div id="foodlist" class="form-inline  " >
+                {% for fod in fodlist %}
+                <div class="form-inline  " name="foodbar">
+                    <input type="text" class="form-control    col-sm-5 m-1"  placeholder="食材" name="food"   value="{{fod.name}}" required>
+                    <input type="text" class="form-control    col-sm-3 m-1" placeholder="份量" name="fQty"  value="{{fod.qty}}" required>  
+                    <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>
+                </div>   
                     {% endfor %}
-                </div>    
+            </div>    
             <button type = "button" id="foodAdd" class="btn btn-outline btn-success">新增食材</button>
-            </div>
-    
-            <div >
-                <h4 class="panel-title m-2">料理步驟</h4>
-                <div id="cookstep" class="form-inline   " >
-                        
-                    {% for stp in stplist %}
-                    
-                    <div class="form-inline m-1 " name="stepbar">
-                        <textarea class="form-control" name="step" id="step" rows="3" cols="110" required placeholder="請輸入步驟" style="resize: none">{{stp}}</textarea>
-                        <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>
-                    </div>
-                    {% endfor %}
+        </div>
+        <div>
+            <h4 class="panel-title m-2">料理步驟</h4>
+            <div id="cookstep" class="form-inline   " >    
+                {% for stp in stplist %}
+                <div class="form-inline m-1 " name="stepbar">
+                    <textarea class="form-control" name="step" id="step" rows="3" cols="110" required placeholder="請輸入步驟" style="resize: none">{{stp}}</textarea>
+                    <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>
                 </div>
+                {% endfor %}
+            </div>
                 <button type = "button" id="stepAdd" class="btn btn-outline btn-success">新增步驟   </button>
+        </div>
+        <input type="hidden" id="recFood" name='recFood'>
+        <input type="hidden" id="recStep" name='recStep'>
+        <div class="form-group row">
+            <div class="col-sm-10 offset-md-5">
+                <button id = "sbmBtn" type="button" class="btn btn-primary">
+                    <i class="fa fa-bath" aria-hidden="true"></i> 確定修改</button>
             </div>
-
-            <input type="hidden" id="recFood" name='recFood'>
-            <input type="hidden" id="recStep" name='recStep'>
-            <div class="form-group row">
-                <div class="col-sm-10 offset-md-5">
-                    <button id = "sbmBtn" type="button" class="btn btn-primary">
-                        <i class="fa fa-bath" aria-hidden="true"></i> 確定修改</button>
-                </div>
-            </div>
-        
+        </div>
         </form>
         </div>
     </div>
- </div>
- {% endblock %}
- {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $('#stepAdd').click(function() {
-            $('#cookstep').append( ' <div class="form-inline  m-1 " name="stepbar">  <textarea class="form-control" name="step" id="step" rows="3" cols="110" required placeholder="請輸入步驟" style="resize: none"></textarea>                <button type = "button" id="stepDel" class="btn btn-outline btn-danger">刪除</button>        </div>'
-             )
-        })
-
-        $('#cookstep').on('click','#stepDel',function(){
-								 $(this).parent("div").remove();
-							})
-
-        $('#foodAdd').click(function() {
-            $('#foodlist').append( '<div class="form-inline  " name="foodbar">            <input type="text" class="form-control   col-sm-5 m-1" placeholder="食材" name="food"  required>  <input type="text" class="form-control  required  col-sm-3 m-1" placeholder="份量" name="fQty"  required>            <button type = "button" id="foodDel" class="btn btn-outline btn-danger col-sm-2">刪除</button>        </div>'
-             )
-        })
-
-        $('#foodlist').on('click','#foodDel',function(){
-								 $(this).parent("div").remove();
-							})
-
-        $('#sbmBtn').click(function(){  
-        
-        fodlist = []
-        $('div[name="foodbar"]').each(function(index){
-            fod = {}
-            fod.name = $(this).children('input[name="food"]').val()
-            fod.qty = $(this).children('input[name="fQty"]').val()
-            fodlist.push(fod)
-        });
-        
-        recFood = JSON.stringify(fodlist)
-        $('#recFood').val(recFood)
-
-        stplist = []
-        $('div[name="stepbar"]').each(function(index){    
-            stp = $(this).children('textarea[name="step"]').val()    
-            stplist.push(stp)
-        });
-        
-        recStep= JSON.stringify(stplist)
-        $('#recStep').val(recStep)
-        $('#reciptform').submit()
-          
-      })                             
-    })
-
-    function openFile(event){
-        var input = event.target
-        var reader = new FileReader()
-        reader.readAsDataURL(input.files[0])
-        reader.onload = function(){
-            var dataURL = reader.result
-            $('#imgrecipename').attr('src', dataURL).show()
-        }
-    }
-    </script>
-    {% endblock %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'scripts/recupdate.js' %}"></script>
+  
+{% endblock %}
