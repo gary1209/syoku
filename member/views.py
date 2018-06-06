@@ -20,12 +20,11 @@ def index(request):
         password = request.POST['password']
         member = Member.objects.filter(useremail=useremail)
         memberid=member[0].id
+        
 
         return redirect("/member/update/%s" %(memberid))
 
-   
     return render(request,'member/index.html',locals()) 
-
 
 
 
@@ -82,22 +81,26 @@ def create(request):
 
 def update(request,id):
     if request.method == 'POST':        
-        username = request.POST["username"]      
+        username = request.POST["username"]  
+        password = request.POST["password"]    
         useremail = request.POST["useremail"]
-        userbirth = request.POST["userbirth"]
+        userbirth = request.POST["userbirth"] 
+        useraddress = request.POST["useraddress"]
 
         # 修改資料庫中的會員資料
         member = Member.objects.get(id=int(id))
         member.username = username
+        member.password = password
         member.usermail = useremail
         member.userbirth = userbirth
+        member.useraddress = useraddress
+        
         member.save()
 
         # return redirect('/member/login')
         response = HttpResponse("<script>alert('修改完成');location.href='/'</script>")
         return response
 
-    # title = "會員修改"
     # 根據會員編號取得會員資料傳給update.html
     member = Member.objects.get(id=int(id))
     return render(request,'member/update.html',locals())
