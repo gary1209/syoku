@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+<div class="container" style="font-family: '微軟正黑體'">
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">{{title}}</div>
       <div class="card-body">
@@ -17,7 +17,7 @@
         <label for="cimg" class="col-sm-2 col-form-label">美食圖片</label>
         <div class="col-sm-10">
                 <img id="output" height="200"  src="/media/{{storemenu.cimg}}" >
-            <input type="file" class="form-control"  name="cimg" id="cimg" onchange="openFile(event)" required>
+            <input type="file" class="form-control"  name="cimg" id="cimg" onchange="openFile(event)" >
         </div>
     </div>
     <div class="form-group row">

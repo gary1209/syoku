@@ -23,25 +23,46 @@
         <li class="nav-item px-lg-4">
           <a class="nav-link text-uppercase text-expanded" href="{% url 'storemenu:index' %}">Menu</a>
         </li>
+
+        {% if request.COOKIES.uid %}
+        <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'member:index' %}">Userupdate</a>
+        </li>
+        {% else %}
+        {% endif %}
+
+
         <!-- <li class="nav-item px-lg-4">
           <a class="nav-link text-uppercase text-expanded" href="{% url 'member:login' %}">MeMbEr</a>
         </li> -->
         <div class="form-inline my-2 my-lg-0">
-          {% if request.COOKIES.uid %}
-          <!-- <span>您好 {{request.COOKIES.uid}} &nbsp;</span> -->
-          <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="{% url 'gary:history' %}" class="btn btn-primary my-2 my-sm-0">歷史菜單</a>
-          {% else %}
 
+            {% if request.COOKIES.uid %}
+            <!-- <span>您好 {{request.COOKIES.uid}} &nbsp;</span> -->
+            <li class="nav-item px-lg-2">
+            <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+            </li>
+            <li class="nav-item px-lg-2">
+              <a href="{% url 'gary:history' %}" class="btn btn-primary my-2 my-sm-0">歷史菜單</a>
+            </li>
+            {% else %}
+            <li class="nav-item px-lg-2">
+            <a href="{% url 'member:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
+          </li>
+            {% endif %}
 
-          <a href="{% url 'member:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
-          {% endif %} &nbsp;&nbsp;&nbsp; {% if request.COOKIES.Company_email %}
-          <a href="{% url 'jabor:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
-          {% else %}
-          <a href="{% url 'jabor:login' %}" class="btn btn-primary my-2 my-sm-0">公司登入</a>
+            &nbsp;&nbsp;&nbsp;
 
-          {% endif %}
+            {% if request.COOKIES.Company_email %}
+            <li class="nav-item px-lg-1">
+            <a href="{% url 'jabor:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+            </li>
+            {% else %}
+            <li class="nav-item px-lg-1">
+            <a href="{% url 'jabor:login' %}" class="btn btn-primary my-2 my-sm-0">公司登入</a>
+            </li>
+            {% endif %}
+
         </div>
       </ul>
     </div>

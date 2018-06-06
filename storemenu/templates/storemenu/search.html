@@ -6,19 +6,22 @@
   <div class="card card-register mx-auto mt-5">
     <div class="card-header">
       <div class="row">
-        
-        <div class="float-left col-4">
+          <div class="float-left col-4">
+          <a href="{% url 'storemenu:index' %}" class="btn btn-primary col-4 ml-3">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>返回菜單</a>
             {% if request.COOKIES.Company_email %}
-        <a href="{% url 'storemenu:userindex' %}" class="btn" style="background-color: #e6a756; font-weight: 500;color: black">我的菜單</a>
-        {% else %}
-        {% endif %}
-        </div>
-        
-        <label class="form-inline">搜尋：</label>
-        <form class=" ml-3"name="myform" method="GET" action="{% url 'storemenu:search' %}"> 
+          <a href="{% url 'storemenu:userindex' %}" class="btn btn-primary col-4 ml-3">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>我的菜單</a>
+            {% else %}
+            {% endif %}
+          </div>
+          
+          
+          <label class="form-inline">搜尋：{{key}}</label>
+          <form class=" ml-3" name="myform" method="GET" action="{% url 'storemenu:search' %}">
             <input type="text" name="search" placeholder="Search" />
-            <button type = "submit" class="btn btn-outline btn-success m-2">搜尋</button>
-        </form>
+            <button type="submit" class="btn btn-outline btn-success m-2">搜尋</button>
+            </form>
       </div> 
     </div>
 
