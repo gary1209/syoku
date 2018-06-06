@@ -16,13 +16,17 @@ def index(request):
     # return render(request,'member/index.html',locals())
 
     if request.method == 'POST':
-        useremail = request.POST['useremail']
-        password = request.POST['password']
-        member = Member.objects.filter(useremail=useremail)
-        memberid=member[0].id
-        
+        try:
+            useremail = request.POST['useremail']
+            password = request.POST['password']
+            member = Member.objects.filter(useremail=useremail,password=password)
+            memberid=member[0].id
 
-        return redirect("/member/update/%s" %(memberid))
+        except:
+            response = HttpResponse("<script>alert('輸入錯誤');location.href='/member/' </script>")
+            return response
+        else:
+            return redirect("/member/update/%s" %(memberid))
 
     return render(request,'member/index.html',locals()) 
 
@@ -149,29 +153,29 @@ def logout(request):
 
 def forgetpwd(request):
     if request.method == 'POST':
-        useremail = request.POST['useremail']
-        members = Member.objects.all()
-        member = Member.objects.filter(useremail = useremail).values('useremail')
-        member2 = Member.objects.filter(useremail = useremail).values('password')
-       
-        # memberid=member[0].id
+        try:
+            useremail = request.POST['useremail']
+            members = Member.objects.all()
+            member = Member.objects.filter(useremail = useremail).values('useremail')
+            member2 = Member.objects.filter(useremail = useremail).values('password')
+            memberemail = member[0]['useremail']
+            memberpwd = member2[0]['password']
+            # memberid=member[0].id
+            # return redirect("/member/resetpwd/%s" %(memberid))
+        except:
+            response = HttpResponse("<script>alert('無此信箱');location.href='/member/forgetpwd' </script>")
+            return response
+        else:
 
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login("syoku03company@gmail.com", "ssyyookkuu03")
+
+            msg = memberpwd
+            server.sendmail("syoku03company@gmail.com", memberemail,msg)
+            server.quit()
+            return redirect("/member/login")
         
-        memberemail = member[0]['useremail']
-        memberpwd = member2[0]['password']
-        
-
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login("syoku03company@gmail.com", "ssyyookkuu03")
-
-        msg = memberpwd
-        server.sendmail("syoku03company@gmail.com", memberemail,msg)
-        server.quit()
-
-
-        # return redirect("/member/resetpwd/%s" %(memberid))
-        return redirect("/member/login")
 
     return render(request,'member/forgetpwd.html',locals()) 
 
