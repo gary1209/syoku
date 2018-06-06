@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block styles%} {% endblock %} {% block content %}
 
-<div class="container" style="font-family: 'SimSun'">
+<div class="container" style="font-family: '微軟正黑體'">
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">
             {{title}}
@@ -8,10 +8,10 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                    <tr class="row ">
-                        <th class="col">ID</th>
-                        <th class="col">快樂崇拜</th>
-                        <th class='col'>眉飛色舞</th>
+                    <tr class="row">
+                        <th class="col">菜單編號</th>
+                        <th class="col">菜單名稱</th>
+                        <th class='col'></th>
                     </tr>
                 </thead>
                 <tbody id="tobddy">
@@ -21,8 +21,9 @@
                         <td class="col">{{historys.id}}</td>
                         <td class="col">{{historys.title}}</td>
 
-                        <td class="col-2">
-                            <a href="{% url 'gary:historydata' historys.id %}" class="btn btn-secondary">編輯</a>
+                        <td class="col">
+                            <a href="{% url 'gary:historydata' historys.id %}" class="btn btn-secondary">查看</a>
+                            <a href="{% url 'gary:delete' historys.id %}" class="btn btn-danger">刪除</a>
                         </td>
                     </tr>
 
