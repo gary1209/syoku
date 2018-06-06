@@ -138,7 +138,7 @@ def login(request):
 def logout(request):
 
     response = HttpResponse(
-        "<script>alert('登出成功');location.href='/jabor/login'</script>")
+        "<script>alert('公司登出成功');location.href='/jabor/login'</script>")
     response.delete_cookie('Company_email')
 
     return response

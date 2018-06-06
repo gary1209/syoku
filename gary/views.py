@@ -565,3 +565,12 @@ def historydata(request,id):
 
 
     return render(request, 'gary/historydata.html',locals())
+
+def delete(request,id):
+    
+    #todo 根據會員編號刪除會員資料
+    history = Plan.objects.get(id=int(id))
+    history.delete()
+    
+    #todo 刪除完成後轉到http://localhost:8000/member
+    return redirect('/history')
