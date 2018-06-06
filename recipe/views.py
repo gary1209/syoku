@@ -71,8 +71,7 @@ def create(request):
             rd = str(random.randint(0,9999))
             recCoverName="rec_"+filename+"_"+recName+rd+".jpg"
             fs.save(recCoverName,myfile)
-               
-            
+                        
             recDesc = request.POST["recDesc"]
             recTime = request.POST["recTime"]
             recPortion = request.POST["recPortion"]
@@ -80,14 +79,10 @@ def create(request):
             recVegan = request.POST["recVegan"]
             recFood = request.POST["recFood"]
             recStep = request.POST["recStep"]
-            
-            try:
-                Recipe.objects.create(userid=userId,recname=recName,reccover=recCoverName,recdesc=recDesc,rectime=recTime,recportion=recPortion,reccal=recCal,recvegan=recVegan,recfood=recFood,recstep=recStep)
-            except:
-                response = HttpResponse("<script>alert('資料不完全');location.href='/recipe/create'</script>")
-                return response
-            else:
-                return redirect('/recipe/userrecipe')
+                 
+            Recipe.objects.create(userid=userId,recname=recName,reccover=recCoverName,recdesc=recDesc,rectime=recTime,recportion=recPortion,reccal=recCal,recvegan=recVegan,recfood=recFood,recstep=recStep)
+         
+            return redirect('/recipe/userrecipe')
         
         return render(request,'recipe/create.html',locals())
     
