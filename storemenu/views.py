@@ -117,6 +117,14 @@ def userindex(request):
         return HttpResponse ("<script>alert('請先登入');location.href='/jabor/login'</script>") 
         # return redirect("/member/login")name
 
+def cindex(request,id):
+    
+    Company = Company_data.objects.get(Company_email = id)
+    Company_email = Company.Company_email
+    storemenu = Storemenu.objects.filter(Company_email=Company_email)
 
-
-
+    print(storemenu)
+    # storemenu =storemenu[0]
+    # storemenu = Storemenu.objects.get(id = int(id))
+    # print(Company.Company_email)
+    return render(request,'storemenu/cindex.html',locals())
