@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
+{% load static %}
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -37,7 +38,11 @@
             <i class="far fa-envelope col-md-3" style="color:orange ; margin-left:30%;"></i>E-mail*(帳號)</label>
         <div class="col-sm-6">
             <input type="email" class="form-control" name="useremail" id="useremail" placeholder="User Email" required>
-            <h6 id="ans" style="font-family: 微軟正黑體" ></h6>
+            <img  src=""/> <span id="ans" style="font-family: 微軟正黑體" ></span>
+        
+            
+    
+
         </div>
     </div>
 
@@ -110,14 +115,18 @@
               va = String($(this).val())
 
             //    console.log(lll)
-            //    console.log(va)
+            //    console.log(va.length )
             //    console.log($.inArray(va, lll))
-               if ($.inArray(va, lll)>=0){
-                   $("#ans").text('帳號重複')
-                   $("#sub").prop('disabled',true)    
+            
+            //    Console.log( va == undefined)
+               if ($.inArray(va, lll)>=0 || va.length == 0 ){
+                   $("#ans").text('不可空值or帳號重複').css({'color':'red'})
+                   $('img').attr('src','{% static "images/1.png" %}')
+                   $("#sub").prop('disabled',true) 
                }
                else{
-                $("#ans").text('帳號可以使用')
+                $("#ans").text('帳號可以使用').css('color','green')
+                $('img').attr('src','{% static "images/2.png" %}')
                 $("#sub").prop('disabled',false)  
                }
           })   
