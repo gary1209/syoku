@@ -4,6 +4,8 @@ from django.http import HttpResponse
 import datetime
 import json
 
+import smtplib  #send email
+
 from member import models
 
 # Create your views here.
@@ -144,11 +146,29 @@ def logout(request):
 
 def forgetpwd(request):
     if request.method == 'POST':
-        email = request.POST['useremail']
-        member = Member.objects.filter(useremail=email)
-        memberid=member[0].id
+        useremail = request.POST['useremail']
+        members = Member.objects.all()
+        member = Member.objects.filter(useremail = useremail).values('useremail')
+        member2 = Member.objects.filter(useremail = useremail).values('password')
+       
+        # memberid=member[0].id
 
-        return redirect("/member/resetpwd/%s" %(memberid))
+        
+        memberemail = member[0]['useremail']
+        memberpwd = member2[0]['password']
+        
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login("syoku03company@gmail.com", "ssyyookkuu03")
+
+        msg = memberpwd
+        server.sendmail("syoku03company@gmail.com", memberemail,msg)
+        server.quit()
+
+
+        # return redirect("/member/resetpwd/%s" %(memberid))
+        return redirect("/member/login")
 
     return render(request,'member/forgetpwd.html',locals()) 
 
