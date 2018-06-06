@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Member
 from django.http import HttpResponse
 import datetime
+import json
 
 from member import models
 
@@ -41,10 +42,37 @@ def create(request):
         useraddress = request.POST["useraddress"]
         usergender = request.POST["usergender"]
         
-        # 會員資料寫進資料庫
-        Member.objects.create(username=username,password=password,userphone=userphone,useremail=useremail,userbirth=userbirth,useraddress=useraddress,usergender=usergender)
+
+        # email是否已在mysql
+        same_email_user = Member.objects.filter(useremail=useremail)
+        if same_email_user:  
+            response = HttpResponse("<script>alert('email已註冊，請登入or使用其他email註冊！');location.href='/member/create' </script>")
+            return response
         
-        return redirect('/member/login')
+
+        else:
+        # 會員資料寫進資料庫
+            Member.objects.create(username=username,password=password,userphone=userphone,useremail=useremail,userbirth=userbirth,useraddress=useraddress,usergender=usergender)
+            response = HttpResponse("<script>alert('註冊成功 請登入！');location.href='/member/login' </script>")
+            return response
+
+
+
+    member = Member.objects.all().values('useremail')
+   
+    lll = []
+    # print(member)
+    # 上面的值為 <QuerySet [{'useremail': 'Ann@gmail.com'}, {'useremail': 'Betty@gmail.com'}, {'useremail': 'Cindy@gmail.com'}, {'useremail': 'Hank@gmail.com'}, {'useremail': 'Tom@gmail.com'}, {'useremail': 'John@gmail.com'}, {'useremail': 'xxx@gmail.com'}]>
+    for i in member:
+        x = i['useremail']
+        lll.append(x)
+    # print(lll)
+    # 上面的值為 ['Ann@gmail.com', 'Betty@gmail.com', 'Cindy@gmail.com', 'Hank@gmail.com', 'Tom@gmail.com', 'John@gmail.com', 'xxx@gmail.com']
+
+    # 為了傳進去js裡面還是LIST
+    List=json.dumps(lll)
+    
+
 
     # title = "會員新增" 
     return render(request,'member/create.html',locals())
