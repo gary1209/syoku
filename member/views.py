@@ -139,7 +139,7 @@ def login(request):
 
 
 def logout(request):
-    response = HttpResponse("<script>alert('登出成功');location.href='/member/login'</script>")
+    response = HttpResponse("<script>alert('會員登出成功');location.href='/member/login'</script>")
     response.delete_cookie('uid')
     return response
 

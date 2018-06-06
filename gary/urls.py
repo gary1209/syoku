@@ -8,5 +8,6 @@ urlpatterns = [
     path('comments',views.comments,name = 'comments'),
     path('history',views.history, name='history'),
     path('historydata/<int:id>',views.historydata,name='historydata'),
+    path('delete/<int:id>',views.delete,name='delete'),
 
 ]
