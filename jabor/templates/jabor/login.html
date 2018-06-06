@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 {% load static %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-<link rel='stylesheet' href="{% static 'styles/style.css' %}">
+<link rel='stylesheet' href="{% static 'styles/style2.css' %}">
 <style>
 .login button{
     background: #e6a756;
@@ -17,7 +17,7 @@
             <div class="wrapper ">
                 <form class="login" method="POST" id='form2'>
                     {% csrf_token %}
-                    <p class="title">Company Log in</p>
+                    <p class="title"  style="text-align: center">Company Log in</p>
                     
                     <input type="email" placeholder="Enter email" autofocus class="form-control" id="Company_email" name="Company_email" />
                     <i class="fa fa-user"></i>
@@ -25,13 +25,15 @@
 
                     <input type="password" placeholder="Password" class="form-control" name="Company_password" id="Company_password" placeholder="Password"
                     />
-
                     <i class="fa fa-key"></i>
-                    <a target="blank" href="{% url 'jabor:register' %}">沒帳號註冊去</a>
-                    
-                    <i class="fa fa-key"></i>
-                    <a target="blank" href="{% url 'jabor:forget_p' %}">忘記密碼</a>
-
+                    <div style="font-size: 19px">
+                    <i class="fa fa-key"></i><b>
+                    <a target="blank" href="{% url 'jabor:register' %}">沒帳號註冊去</a></b>
+                    </div>
+                    <div  style="font-size: 19px">
+                    <i class="fa fa-key"></i><b>
+                    <a target="blank" href="{% url 'jabor:forget_p' %}">忘記密碼</a></b>
+                    </div>
 
                     <button type="submit" class="btn btn-primary mt-2">
                         <i class="fa fa-sign-in" aria-hidden="true"></i>Log in</button>

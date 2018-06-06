@@ -1,0 +1,192 @@
+{% extends 'base.html' %} {% load static %} 
+{% block styles%}
+{% endblock %}
+{% block content %}
+
+
+<div class="col-12 col-md-6">
+   
+        <!-- <h1 style="color: aliceblue">{{historys.title}}</h1> -->
+    
+        <table class="table" style="background-color: #f9ebc0;color:black;text-align: center">
+             <!-- {% for historys in history %} -->
+            <thead style="background-color: #1eb4ab;color:white">
+                <tr>
+                    <th>BREAKFAST</th>>
+                    <th>LUNCH</th>>
+                    <th>DINNER</th>>
+                </tr>
+            </thead>
+            <tbody id="monday" name="monday">
+                <tr>
+                    <th colspan="3">Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>熱量:0大卡</small></th>
+                </tr>
+                <tr>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_mon1}}' style="width: 200px;height: 200px;">
+                        {{historys.mon1}}
+                        <input type="hidden" value="" name="1-1">
+                
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_mon2}}'  style="width: 200px;height: 200px;">
+                            {{historys.mon2}}
+                        <input type="hidden" value="" name="1-2">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_mon3}}' style="width: 200px;height: 200px;">
+                            {{historys.mon3}}
+                        <input type="hidden" value="" name="1-3">
+                    </td>
+                </tr>
+            </tbody>
+    
+            <tbody id="tuesday" name="tuesday">
+                <tr>
+                    <th colspan="3">Tuesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>熱量:0大卡</small></th>
+                </tr>
+                <tr>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_tue1}}' style="width: 200px;height: 200px;">
+                            {{historys.tue1}}
+                        <input type="hidden" value="" name="2-1">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_tue2}}' style="width: 200px;height: 200px;">
+                            {{historys.tue2}}
+                        <input type="hidden" value="" name="2-2">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_tue3}}' style="width: 200px;height: 200px;">
+                            {{historys.tue3}}
+                        <input type="hidden" value="" name="2-3">
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="wednesday" name="wednesday">
+                <tr>
+                    <th colspan="3">Wednesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>熱量:0大卡</small></th>
+                </tr>
+                <tr>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_wed1}}' style="width: 200px;height: 200px;">
+                        {{historys.wed1}}
+                        <input type="hidden" value="" name="3-1">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_wed2}}' style="width: 200px;height: 200px;">
+                            {{historys.wed2}}
+                        <input type="hidden" value="" name="3-2">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_wed3}}' style="width: 200px;height: 200px;">
+                            {{historys.wed3}}
+                        <input type="hidden" value="" name="3-3">
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="thursday" name="thursday">
+                <tr>
+                    <th colspan="3">Thursday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>熱量:0大卡</small></th>
+                </tr>
+                <tr>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_thu1}}' style="width: 200px;height: 200px;">
+                            {{historys.thu1}}
+                        <input type="hidden" value="" name="4-1">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_thu2}}' style="width: 200px;height: 200px;">
+                            {{historys.thu2}}
+                        <input type="hidden" value="" name="4-2">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_thu3}}' style="width: 200px;height: 200px;">
+                            {{historys.thu3}}
+                        <input type="hidden" value="" name="4-3">
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="friday" name="friday">
+                <tr>
+                    <th colspan="3">Friday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>熱量:0大卡</small></th>
+                </tr>
+                <tr>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_fri1}}' style="width: 200px;height: 200px;">
+                            {{historys.fri1}}
+                        <input type="hidden" value="" name="5-1">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_fri2}}' style="width: 200px;height: 200px;">
+                            {{historys.fri2}}
+                        <input type="hidden" value="" name="5-2">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_fri3}}' style="width: 200px;height: 200px;">
+                            {{historys.fri3}}
+                        <input type="hidden" value="" name="5-3">
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="saturday" name="saturday">
+                <tr>
+                    <th colspan="3">Saturday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>熱量:0大卡</small></th>
+                </tr>
+                <tr>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_sat1}}' style="width: 200px;height: 200px;">
+                            {{historys.sat1}}
+                        <input type="hidden" value="" name="6-1">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_sat2}}' style="width: 200px;height: 200px;">
+                            {{historys.sat2}}
+                        <input type="hidden" value="" name="6-2">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_sat3}}' style="width: 200px;height: 200px;">
+                            {{historys.sat3}}
+                        <input type="hidden" value="" name="6-3">
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="sunday" name="sunday">
+                <tr>
+                    <th colspan="3">Sunday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>熱量:0大卡</small></th>
+                </tr>
+                <tr>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_sun1}}' style="width: 200px;height: 200px;">
+                            {{historys.sun1}}
+                        <input type="hidden" value="" name="7-1">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_sun2}}' style="width: 200px;height: 200px;">
+                            {{historys.sun2}}
+                        <input type="hidden" value="" name="7-2">
+                    </td>
+                    <td style="padding: 0" class="dropzone">
+                            <img src='/media/{{img_gary_sun3}}' style="width: 200px;height: 200px;">
+                            {{historys.sun3}}
+                        <input type="hidden" value="" name="7-3">
+                    </td>
+                </tr>
+            </tbody>
+    <!-- {% endfor %} -->
+        </table>
+    
+    
+    </div>
+    
+    {% endblock %}
+    {% block scripts %}
+
+    {% endblock%}
