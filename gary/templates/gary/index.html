@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% load static %} 
 {% block styles%}
 <link href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <style>
     table {
         table-layout: fixed;
@@ -251,7 +252,7 @@
             {% for storemenu in storemenu %}
                 <div class="card col-md-6" style="border: 3px solid black;">
                     <div class="draggable">
-                        <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                            <a href="{% url 'storemenu:cindex' storemenu.Company_email %}"><img class="card-img-top"  id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal"></a>
                         <div style="display: none">
                             <div class="card-body">
                                 <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
@@ -289,6 +290,9 @@
             </div>
         </div>
     </div>
+    <h1 id="table" style="color:white; font-size: 80px; position: fixed;right: 50px;bottom: 50px; cursor:pointer;" ><i class="fas fa-plus-circle"></i></h1>
+    <!-- <h1 style="color:white; font-size: 80px; position: fixed;right: 50px;bottom: 50px; cursor:pointer display: none;" ><i class="fas fa-minus-circle"></i></i></h1> -->
+    
 
 </div>
 
@@ -298,6 +302,8 @@
 <script>
     // var a = 100;
     $(".draggable").draggable({
+
+        // $(this).css('cursor','move');
         // brings the item back to its place when dragging is over
         revert:true, 
         
@@ -321,6 +327,9 @@
         }   
     });
 
+    $('#table').click(function(){
+        $("#fix1").toggle( "fold", 2000 );
+    });
 
     function addBasket(basket, move) {
         //餐點名字 move.find(".card-title").html()
