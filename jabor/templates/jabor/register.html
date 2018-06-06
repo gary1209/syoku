@@ -1,8 +1,10 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="container">
     <div class="card card-register mx-auto mt-5" style="margin :auto">
         <div class="card-header" style="margin: auto;padding-top: 40px">
-            <h2>ReGiStEr FoR YoUr CoMpAnY</h2>
+            <h2>Register For Your Company</h2>
         </div>
         <hr style="border: solid 1px black">
         <div class="card-body" style="margin: 0 auto">
@@ -10,49 +12,50 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY NaMe">CoMpAnY NaMe</label>
+                        <label for="CoMpAnY NaMe"><b><i class="fa fa-address-book" style="color:blue"></i>&nbsp;&nbsp;公司名稱: </b></label>
                         <input type="Name" class="form-control" name="Company_name" id="Company_name" placeholder="Enter your name" style="border:solid 1px black">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY PaSsWoRd">PaSsWoRd</label>
+                        <label for="CoMpAnY PaSsWoRd"><b><i class="fa fa-eye-slash" style="color:orange"></i>&nbsp;&nbsp;密碼輸入: </b></label>
                         <input type="password" class="form-control " name="Company_password" id="Company_password" placeholder="Password" style="border:solid 1px black">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY EmAiL">EmAiL</label>
+                        <label for="CoMpAnY EmAiL"><b><i class="fa fa-envelope-o" style="color:red"></i>&nbsp;&nbsp;您的信箱: </b></label>
                         <input type="email" class="form-control" name="Company_email" id="Company_email" placeholder="Enter email" style="border:solid 1px black">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY TeLePhOnE">CoMpAnY TeLePhOnE</label>
+                        <label for="CoMpAnY TeLePhOnE"><b><i class="fa fa-mobile-phone" style="font-size:24px; style:gray"></i>&nbsp;&nbsp;電話號碼: </b></label>
                         <input type="text" class="form-control" name="Company_tele" id="Company_tele" placeholder="Enter Phone" style="border:solid 1px black">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY AdDrEsS">AdDrEsS</label>
+                        <label for="CoMpAnY AdDrEsS"><b><i class="fa fa-car" style="color:purple"></i>&nbsp;&nbsp;店家地址: </b></label>
                         <input type="text" class="form-control" name="Company_address" id="Company_address" placeholder="Enter Address" style="border:solid 1px black">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY PhOtO">CoMpAnY PhOtO</label>
-                        <input type="file" class="form-control" name="Company_photo" id="Company_photo" style="border:solid 1px black">
+                        <label for="CoMpAnY PhOtO"><b><i class="fa fa-file-photo-o" style="color:aqua"></i>&nbsp;&nbsp;公司照片:　</b></label>
+                        <img id="output" height="200" style="display:none">
+                        <input type="file" class="form-control" name="Company_photo" id="Company_photo" style="border:solid 1px black" onchange="openFile(event)" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY OpEn TiMe">OpEn TiMe</label>
+                        <label for="CoMpAnY OpEn TiMe"><b><i class="fa fa-calendar-check-o" style="color:green"></i>&nbsp;&nbsp;開門時間：　</b></label>
                         <input type="time" name="Company_open_time" id='Company_open_time' style="border:solid 1px black;zoom: 1.5">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-8" style="margin: auto">
-                        <label for="CoMpAnY ClOsE TiMe">ClOsE TiMe</label>
+                        <label for="CoMpAnY ClOsE TiMe"><b><i class="fa fa-calendar-times-o" style="color:brown"></i>&nbsp;&nbsp;關店時間: </b></label>
                         <input type="time" name="Company_close_time" id='Company_close_time' style="border:solid 1px black;zoom: 1.5">
                     </div>
                 </div>
@@ -68,6 +71,21 @@
 
         </div>
     </div>
+<script>
+        function openFile(event) {
+            var input = event.target; //取得上傳檔案
+            var reader = new FileReader(); //建立FileReader物件
+
+            reader.readAsDataURL(input.files[0]); //以.readAsDataURL將上傳檔案轉換為base64字串
+
+            reader.onload = function () { //FileReader取得上傳檔案後執行以下內容
+                // alert(reader.result)
+                var dataURL = reader.result; //設定變數dataURL為上傳圖檔的base64字串
+                $('#output').attr('src', dataURL).show(); //將img的src設定為dataURL並顯示
+            };
+
+        }
+</script>
 </div>
 </div>
 

@@ -32,7 +32,7 @@ CREATE TABLE `members` (
   `useraddress` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `userphone` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (13,'Ann','ann','Ann@gmail.com','Female','2018-06-01','台北市中正區','0910-000-000'),(14,'Betty','betty','Betty@gmail.com','Female','2018-06-02','台北市中山區','0910-111-111'),(15,'Cindy','cindy','Cindy@gmail.com','Female','2018-06-03','台北市大同區','0910-222-222'),(16,'Hank','hank','Hank@gmail.com','Male','2018-06-04','台北市信義區','0910-333-333'),(17,'Tom','tom','Tom@gmail.com','Male','2018-06-05','新北市中和區','0910-444-444'),(18,'John','john','John@gmail.com','Male','2018-06-06','新北市永和區','0910-555-555');
+INSERT INTO `members` VALUES (13,'Ann','ann','Ann@gmail.com','Female','2018-06-01','台北市中正區','0910-000-000'),(14,'Betty','betty','Betty@gmail.com','Female','2018-06-02','台北市中山區','0910-111-111'),(15,'Cindy','cindy','Cindy@gmail.com','Female','2018-06-03','台北市大同區','0910-222-222'),(16,'Hank','hank','Hank@gmail.com','Male','2018-06-04','台北市信義區','0910-333-333'),(17,'Tom','tom','Tom@gmail.com','Male','2018-06-05','新北市中和區','0910-444-444'),(18,'John','john','John@gmail.com','Male','2018-06-06','新北市永和區','0910-555-555'),(19,'DavidTest','11111','davidtest@gamil.com','Male','2018-06-01','taipei','0922222222'),(20,'DavidTest','111111','davidtest@gamil.com','Male','2018-06-01','taipei','0922222222'),(21,'DavidTest','111111','davidtest@gamil.com','Male','2018-06-01','taipei','0922222222'),(22,'DavidTest','11111','davidtest@gamil.com','Male','2018-06-01','taipei','0922222222'),(23,'DavidTest','111111','davidtest@gamil.com','Male','2018-06-01','taipei','0922222222'),(24,'linkin','111111','linkin@yahoo.com','Male','2018-05-02','usa','0923333333'),(25,'私房料理家','11111','cook@msn.com','Female','2018-05-10','tokyo','0922222444'),(26,'小當家','12345','xiaodj@qq.com','Male','2018-04-05','北京','0911222333');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-04 17:57:28
+-- Dump completed on 2018-06-05 18:38:06

@@ -8,11 +8,23 @@ from member import models
 
 # Create your views here.
 def index(request):  
-    
     # title = "會員管理"
     # 會員資料傳給 index.html
-    members=Member.objects.all()
-    return render(request,'member/index.html',locals())
+    # members=Member.objects.all()
+    # return render(request,'member/index.html',locals())
+
+    if request.method == 'POST':
+        useremail = request.POST['useremail']
+        password = request.POST['password']
+        member = Member.objects.filter(useremail=useremail)
+        memberid=member[0].id
+
+        return redirect("/member/update/%s" %(memberid))
+
+   
+    return render(request,'member/index.html',locals()) 
+
+
 
 
 def home(request):  
@@ -37,6 +49,7 @@ def create(request):
             response = HttpResponse("<script>alert('email已註冊，請登入or使用其他email註冊！');location.href='/member/create' </script>")
             return response
         
+
         else:
         # 會員資料寫進資料庫
             Member.objects.create(username=username,password=password,userphone=userphone,useremail=useremail,userbirth=userbirth,useraddress=useraddress,usergender=usergender)
@@ -60,6 +73,7 @@ def create(request):
     List=json.dumps(lll)
     
 
+
     # title = "會員新增" 
     return render(request,'member/create.html',locals())
 
@@ -77,12 +91,15 @@ def update(request,id):
         member.userbirth = userbirth
         member.save()
 
-        return redirect('/member')
+        # return redirect('/member/login')
+        response = HttpResponse("<script>alert('修改完成');location.href='/'</script>")
+        return response
 
     # title = "會員修改"
     # 根據會員編號取得會員資料傳給update.html
     member = Member.objects.get(id=int(id))
     return render(request,'member/update.html',locals())
+
 
 
 def delete(request,id):
