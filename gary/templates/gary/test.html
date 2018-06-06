@@ -49,6 +49,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12" style="padding: 0">
+            <form method="POST" id = "fix1" class="">
+                {% csrf_token %}
                 <table class="table" style="background-color: #f9ebc0;color:black;text-align: center">
                     <thead style="background-color: #1eb4ab;color:white;">
                         <tr>
@@ -62,7 +64,7 @@
                             <th>Sunday</th>
                         </tr>
                     </thead>
-                    <!-- <tbody id="cccccal" name="cccccal">
+                    <tbody id="cccccal" name="cccccal">
                             <tr>
                                 <th colspan="1">熱量</th>
                                 <td><small>熱量: <small id="ccal1" ></small>大卡</small></td>
@@ -73,7 +75,7 @@
                                 <td><small>熱量: <small id="ccal6" ></small>大卡</small></td>
                                 <td><small>熱量: <small id="ccal7" ></small>大卡</small></td>
                             </tr>
-                        </tbody> -->
+                        </tbody>
                     <tbody id="BREAKFAST" name="BREAKFAST">
                         <tr>
                             <th colspan="1">BREAKFAST</th>
@@ -195,6 +197,7 @@
                                 </tr>
                             </tbody>
                 </table>
+            </form>   
         </div>
     </div>
     </div>
