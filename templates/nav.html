@@ -3,13 +3,13 @@
   <span class="site-heading-upper text-primary mb-3" style="text-shadow: black 0.1em 0.1em 0.2em">
     Syoku - wE aRe ThE fOoD WeBsItE
   </span>
-  <span class="site-heading-lower" style="
-  text-shadow: black 0.1em 0.1em 0.2em;font-weight: 400;">FoR YoUr SeRvIcE</span>
+  <span class="site-heading-lower" style="text-shadow: black 0.1em 0.1em 0.2em;font-weight: 400;">FoR YoUr SeRvIcE</span>
 </h1>
 <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" style="background-color: rgba(47, 23, 15, .6);">
   <div class="container">
     <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="">Syoku</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -27,21 +27,21 @@
           <a class="nav-link text-uppercase text-expanded" href="{% url 'member:login' %}">MeMbEr</a>
         </li> -->
         <div class="form-inline my-2 my-lg-0">
-            {% if request.COOKIES.uid %}
-            <!-- <span>您好 {{request.COOKIES.uid}} &nbsp;</span> -->
-            <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
-            {% else %}
+          {% if request.COOKIES.uid %}
+          <!-- <span>您好 {{request.COOKIES.uid}} &nbsp;</span> -->
+          <a href="{% url 'member:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="{% url 'gary:history' %}" class="btn btn-primary my-2 my-sm-0">歷史菜單</a>
+          {% else %}
 
 
-            <a href="{% url 'member:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
-            {% endif %}
-            &nbsp;&nbsp;&nbsp;
-            {% if request.COOKIES.Company_email %}
-            <a href="{% url 'jabor:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
-            {% else %}
-            <a href="{% url 'jabor:login' %}" class="btn btn-primary my-2 my-sm-0">公司登入</a>
+          <a href="{% url 'member:login' %}" class="btn btn-primary my-2 my-sm-0">會員登入</a>
+          {% endif %} &nbsp;&nbsp;&nbsp; {% if request.COOKIES.Company_email %}
+          <a href="{% url 'jabor:logout' %}" class="btn btn-danger my-2 my-sm-0">登出</a>
+          {% else %}
+          <a href="{% url 'jabor:login' %}" class="btn btn-primary my-2 my-sm-0">公司登入</a>
 
-            {% endif %}
+          {% endif %}
         </div>
       </ul>
     </div>
