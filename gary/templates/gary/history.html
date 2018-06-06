@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% load static %} {% block styles%} {% endblock %} {% block content %}
+
+<div class="container" style="font-family: 'SimSun'">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">
+            {{title}}
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="row ">
+                        <th class="col">ID</th>
+                        <th class="col">快樂崇拜</th>
+                        <th class='col'>眉飛色舞</th>
+                    </tr>
+                </thead>
+                <tbody id="tobddy">
+                    {% for historys in history %}
+                    <tr class="row">
+
+                        <td class="col">{{historys.id}}</td>
+                        <td class="col">{{historys.title}}</td>
+
+                        <td class="col-2">
+                            <a href="{% url 'gary:historydata' historys.id %}" class="btn btn-secondary">編輯</a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
+            <img sid="imgall" id="imgalll" src="" style="width: 1000px;">
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %} {% block scripts %} {% endblock%}
