@@ -30,6 +30,8 @@
         left: 0; 
         right: 0;
         z-index: 100;
+        top:0;
+        opacity: 0.9;
     }
     .toggle {
         height: 50px;
@@ -203,7 +205,7 @@
                                 標題 &nbsp;:&nbsp;&nbsp;
                                 <input type="text" class="btn btu-primary" name="title" >&nbsp;
                                 <input id="btn1" type="submit" class="btn btu-primary" value="儲存">
-                                <a class="btn btn-primary" style="color:white" id="random_plan" onclick="random_plan()">隨機</a>
+                                <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="color:white" id="random_plan" >隨機</a>
                             </th>
                         </tr>
                         
@@ -224,7 +226,7 @@
                         <div style="display: none">
                             <div class="card-body">
                                 <h4 class="card-title" style="font-weight: 900">[食譜]{{recipe.recname}}</h4>
-                                <p class="card-text">{{recipe.recdesc}}</p>
+                                <!-- <p class="card-text">{{recipe.recdesc}}</p> -->
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">葷素: {{recipe.recvegan}}</li>
@@ -234,7 +236,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title" style="font-weight: 900">[食譜]{{recipe.recname}}</h4>
-                        <p class="card-text">{{recipe.recdesc}}</p>
+                        <!-- <p class="card-text">{{recipe.recdesc}}</p> -->
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">葷素: {{recipe.recvegan}}</li>
@@ -253,7 +255,6 @@
                         <div style="display: none">
                             <div class="card-body">
                                 <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
-                                <p class="card-text">{{storemenu.cintroduction}}</p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">類型: {{storemenu.ctype}}</li>
@@ -264,7 +265,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
-                        <p class="card-text">{{storemenu.cintroduction}}</p>
+                        <!-- <p class="card-text">{{storemenu.cintroduction}}</p> -->
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">類型: {{storemenu.ctype}}</li>
@@ -276,6 +277,19 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" onclick="random_plan()">
+        <div class="modal-dialog modal-dialog-centered" role="document" >
+                <img src="{% static 'images/1.gif' %}"  alt="" >
+                <!-- <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
@@ -303,42 +317,7 @@
             var move = ui.draggable;
             
             addBasket(basket,move)
-            cb_1 = Number($("tbody#BREAKFAST h5[name='1-1cals']").text().split(" ")[1]) 
-            cl_1 = Number($("tbody#LUNCH h5[name='1-2cals']").text().split(" ")[1])  
-            cd_1 = Number($("tbody#DINNER h5[name='1-3cals']").text().split(" ")[1])
-            cal1 = (cb_1+cl_1+cd_1)
-            cb_2 = Number($("tbody#BREAKFAST h5[name='2-1cals']").text().split(" ")[1]) 
-            cl_2 = Number($("tbody#LUNCH h5[name='2-2cals']").text().split(" ")[1])  
-            cd_2 = Number($("tbody#DINNER h5[name='2-3cals']").text().split(" ")[1])
-            cal2 = (cb_2+cl_2+cd_2)
-            cb_3 = Number($("tbody#BREAKFAST h5[name='3-1cals']").text().split(" ")[1]) 
-            cl_3 = Number($("tbody#LUNCH h5[name='3-2cals']").text().split(" ")[1])  
-            cd_3 = Number($("tbody#DINNER h5[name='3-3cals']").text().split(" ")[1])
-            cal3 = (cb_3+cl_3+cd_3)
-            cb_4 = Number($("tbody#BREAKFAST h5[name='4-1cals']").text().split(" ")[1]) 
-            cl_4 = Number($("tbody#LUNCH h5[name='4-2cals']").text().split(" ")[1])  
-            cd_4 = Number($("tbody#DINNER h5[name='4-3cals']").text().split(" ")[1])
-            cal4 = (cb_4+cl_4+cd_4)
-            cb_5 = Number($("tbody#BREAKFAST h5[name='5-1cals']").text().split(" ")[1]) 
-            cl_5 = Number($("tbody#LUNCH h5[name='5-2cals']").text().split(" ")[1])  
-            cd_5 = Number($("tbody#DINNER h5[name='5-3cals']").text().split(" ")[1])
-            cal5 = (cb_5+cl_5+cd_5)
-            cb_6 = Number($("tbody#BREAKFAST h5[name='6-1cals']").text().split(" ")[1]) 
-            cl_6 = Number($("tbody#LUNCH h5[name='6-2cals']").text().split(" ")[1])  
-            cd_6 = Number($("tbody#DINNER h5[name='6-3cals']").text().split(" ")[1])
-            cal6 = (cb_6+cl_6+cd_6)
-            cb_7 = Number($("tbody#BREAKFAST h5[name='7-1cals']").text().split(" ")[1]) 
-            cl_7 = Number($("tbody#LUNCH h5[name='7-2cals']").text().split(" ")[1])  
-            cd_7 = Number($("tbody#DINNER h5[name='7-3cals']").text().split(" ")[1])
-            cal7 = (cb_7+cl_7+cd_7)
-            // alert(mon_b)
-            $("#ccal1").text(cal1)
-            $("#ccal2").text(cal2)
-            $("#ccal3").text(cal3)
-            $("#ccal4").text(cal4)
-            $("#ccal5").text(cal5)
-            $("#ccal6").text(cal6)
-            $("#ccal7").text(cal7)
+            cal_count();
         }   
     });
 
@@ -359,38 +338,46 @@
     }  
 
     $.fn.fixedDiv = function(actCls, i){
-            var that = $(this),
-                h = that.height(),
-                topVal = (h + 2) * i,
-                offsetTop = that.offset().top,
-                scrollTop;
-            function fix(){
-                scrollTop = $(document).scrollTop();   
-                // console.log("offsetTop: " + offsetTop);
-                // console.log("scroll: " + screenTop);
-                if (scrollTop > (offsetTop - topVal)) {
-                    that.addClass(actCls);
-                    that.css("top", topVal + "px");                
-                } else {
-                    that.removeClass(actCls);
-                }
+        var that = $(this);
+        var h = that.height();
+        var topVal = (h + 2) * i;
+        // console.log($(this).offset())
+        var offsetTop = $(this).offset().top;
+        
+        function fix(){
+            scrollTop = $(document).scrollTop();   
+            // console.log("offsetTop: " + offsetTop);
+            // console.log("scroll: " + screenTop);
+            if (scrollTop > (offsetTop - topVal)) {
+                that.addClass(actCls);
+                that.css("top", topVal + "px");                
+            } else {
+                that.removeClass(actCls);
             }
-            fix();
-            $(window).scroll(fix);
         }
-        $('#fix1').fixedDiv('fix-div', 0);
-        $('#fix2').fixedDiv('fix-div', 1);
-        $('#fix3').fixedDiv('fix-div', 2);
-        $('#fix4').fixedDiv('fix-div', 3);
-        $('#fix5').fixedDiv('fix-div', 4);
-
-    $('#random_plan').click(function(){
-        $('td.dropzone').each(function(){
-            $(this).find('img').attr('src',"{% static 'images/4.gif' %}")
-        });
-    });
+        fix();
+        $(window).scroll(fix);
+    }
+    $('#fix1').fixedDiv('fix-div', 0);
+    // $('#fix2').fixedDiv('fix-div', 1);
+    // $('#fix3').fixedDiv('fix-div', 2);
+    // $('#fix4').fixedDiv('fix-div', 3);
+    // $('#fix5').fixedDiv('fix-div', 4);
     
+    // $('#random_plan').click(random_plan)
+
+    // $('#random_plan').click(function(){
+    //     setTimeout(random_plan,2000)
+    //     setTimeout($('#exampleModalCenter').modal('hide'),1000)
+        
+    // });
+
     function random_plan(){
+        // $('#exampleModalCenter').removeClass('show');
+        // $('#exampleModalCenter').css('display','none');
+        // $('body').removeClass('modal-open');
+        
+
         var items = $('.draggable')
         var len = items.length
         // eq(index)
@@ -398,11 +385,57 @@
         
         $('td.dropzone').each(function(){
             var num = Math.floor((Math.random() * len) + 1) -1;
+
+            //找出標題 圖片 卡洛里
             title = items.eq(num).find(".card-title").text()
             image_src = items.eq(num).find("img").attr("src")
-            $(this).find('img').attr('src',image_src)
-            $(this).find('input').attr('value',title)
+            cal_text = items.eq(num).find("li[name='foodcal' ]").text()
+
+            //塞回最上面的個人菜單
+            $(this).find('img').attr('src',image_src);
+            $(this).find('input').attr('value',title);
+            $(this).find('h5').text(cal_text);
+            cal_count();
         });
+    }
+
+    function cal_count(){
+        cb_1 = Number($("tbody#BREAKFAST h5[name='1-1cals']").text().split(" ")[1]) 
+        cl_1 = Number($("tbody#LUNCH h5[name='1-2cals']").text().split(" ")[1])  
+        cd_1 = Number($("tbody#DINNER h5[name='1-3cals']").text().split(" ")[1])
+        cal1 = (cb_1+cl_1+cd_1)
+        cb_2 = Number($("tbody#BREAKFAST h5[name='2-1cals']").text().split(" ")[1]) 
+        cl_2 = Number($("tbody#LUNCH h5[name='2-2cals']").text().split(" ")[1])  
+        cd_2 = Number($("tbody#DINNER h5[name='2-3cals']").text().split(" ")[1])
+        cal2 = (cb_2+cl_2+cd_2)
+        cb_3 = Number($("tbody#BREAKFAST h5[name='3-1cals']").text().split(" ")[1]) 
+        cl_3 = Number($("tbody#LUNCH h5[name='3-2cals']").text().split(" ")[1])  
+        cd_3 = Number($("tbody#DINNER h5[name='3-3cals']").text().split(" ")[1])
+        cal3 = (cb_3+cl_3+cd_3)
+        cb_4 = Number($("tbody#BREAKFAST h5[name='4-1cals']").text().split(" ")[1]) 
+        cl_4 = Number($("tbody#LUNCH h5[name='4-2cals']").text().split(" ")[1])  
+        cd_4 = Number($("tbody#DINNER h5[name='4-3cals']").text().split(" ")[1])
+        cal4 = (cb_4+cl_4+cd_4)
+        cb_5 = Number($("tbody#BREAKFAST h5[name='5-1cals']").text().split(" ")[1]) 
+        cl_5 = Number($("tbody#LUNCH h5[name='5-2cals']").text().split(" ")[1])  
+        cd_5 = Number($("tbody#DINNER h5[name='5-3cals']").text().split(" ")[1])
+        cal5 = (cb_5+cl_5+cd_5)
+        cb_6 = Number($("tbody#BREAKFAST h5[name='6-1cals']").text().split(" ")[1]) 
+        cl_6 = Number($("tbody#LUNCH h5[name='6-2cals']").text().split(" ")[1])  
+        cd_6 = Number($("tbody#DINNER h5[name='6-3cals']").text().split(" ")[1])
+        cal6 = (cb_6+cl_6+cd_6)
+        cb_7 = Number($("tbody#BREAKFAST h5[name='7-1cals']").text().split(" ")[1]) 
+        cl_7 = Number($("tbody#LUNCH h5[name='7-2cals']").text().split(" ")[1])  
+        cd_7 = Number($("tbody#DINNER h5[name='7-3cals']").text().split(" ")[1])
+        cal7 = (cb_7+cl_7+cd_7)
+        // alert(mon_b)
+        $("#ccal1").text(cal1)
+        $("#ccal2").text(cal2)
+        $("#ccal3").text(cal3)
+        $("#ccal4").text(cal4)
+        $("#ccal5").text(cal5)
+        $("#ccal6").text(cal6)
+        $("#ccal7").text(cal7)
     }
 </script>
 {% endblock %}
