@@ -53,7 +53,7 @@
         {% for storemenu in storemenu %}
         <li data-id="id-{{storemenu.id}}" class="{{storemenu.ctype}} col-6 col-md-3 mb-3" style="list-style: none;">
           <div class="card " style="border: 3px solid black;">
-            <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+            <a href="#"><img class="card-img-top"  id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal"></a>
             <div class="card-body">
               <h4 class="card-title" style="font-weight: 900; font-family: '微軟正黑體'">{{storemenu.cname}}</h4>
               <p class="card-text">{{storemenu.cintroduction}}</p>
@@ -73,9 +73,29 @@
 
       <div class="modal fade" id="exampleModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;">
+
           <img sid="imgall" id="imgalll" src="" style="width: 1000px;">
         </div>
       </div>
+
+      <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <img sid="imgall" id="imgalll" src="" style="width: auto;">
+              </div>
+
+            </div>
+          </div>
+        </div> -->
+
+
     </div>
   </div>
   <script>

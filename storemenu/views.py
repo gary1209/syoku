@@ -8,6 +8,8 @@ from django.db.models import Q
 def index(request):
     title = "菜單管理"
     storemenu = Storemenu.objects.all()
+    
+    # Company = Company_data.objects.get(Company_email=Company_email)
     return render(request,'storemenu/index.html',locals())
 
 def search(request): 
