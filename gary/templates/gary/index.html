@@ -251,7 +251,7 @@
             {% for storemenu in storemenu %}
                 <div class="card col-md-6" style="border: 3px solid black;">
                     <div class="draggable">
-                        <img class="card-img-top" id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+                            <a href="{% url 'storemenu:cindex' storemenu.Company_email %}"><img class="card-img-top"  id="imgall" src="/media/{{storemenu.cimg}}" alt="Card image cap" data-toggle="modal" data-target="#exampleModal"></a>
                         <div style="display: none">
                             <div class="card-body">
                                 <h4 class="card-title" style="font-weight: 900">[店家]{{storemenu.cname}}</h4>
