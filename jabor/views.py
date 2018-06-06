@@ -46,10 +46,10 @@ def update(request):
         Company_email = request.COOKIES['Company_email']
         companysA = Company_data.objects.filter(Company_email=Company_email).values(
             'id', 'Company_name', 'Company_email', 'Company_photo', 'Company_tele', 'Company_address', 'Company_open_time', 'Company_close_time')  # 取得cookie的資料庫id為多少3 ,
-        # print(companysA)
+        print(companysA)
 
         companysB = companysA[0]
-        # print(companysB)
+        print(companysB)
         return render(request, 'jabor/update.html', locals())
     else:
         return HttpResponse("<script>alert('請先登入');location.href='/jabor/login'</script>")
@@ -162,7 +162,7 @@ def forget_p(request):
         server.starttls()
         server.login("syoku03company@gmail.com", "ssyyookkuu03")
 
-        msg = company_p
+        msg = "your password is "+company_p
         server.sendmail("syoku03company@gmail.com", company_e, msg)
         server.quit()
         return redirect('/jabor/login')
