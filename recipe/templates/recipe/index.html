@@ -10,7 +10,7 @@
                     <a href="{% url 'recipe:userrecipe' %}" class="btn btn-primary col-4 ml-3"><i class="fa fa-plus-circle" 
                             aria-hidden="true"></i>我的食譜</a>
                 </div>
-                <label class="form-inline">搜尋：{{srhkey}}</label>
+                <label class="form-inline">搜尋：</label>
                 <form class=" ml-3"name="myform" method="GET" action="{% url 'recipe:search' %}"> 
                     <input type="text" name="search" placeholder="Search" />
                     <button type = "submit" class="btn btn-outline btn-success m-2">搜尋</button>
