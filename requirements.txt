@@ -5,7 +5,7 @@ cssselect==1.0.3
 get==1.0.3
 idna==2.6
 Js2Py==0.59
-lxml==4.2.1
+lxml==4.6.5
 numpy==1.14.3
 post==1.0.2
 public==1.0.3
