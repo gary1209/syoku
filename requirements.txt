@@ -6,7 +6,7 @@ get==1.0.3
 idna==2.6
 Js2Py==0.59
 lxml==4.2.1
-numpy==1.14.3
+numpy==1.22.0
 post==1.0.2
 public==1.0.3
 pyjsparser==2.5.2
